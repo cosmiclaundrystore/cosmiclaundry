@@ -35,8 +35,24 @@
   main.innerHTML='<section class="hero" data-hero style="--hero-tint:'+c.tint+';--accent:'+c.accent+'"><div class="hero-intro" data-hero-copy><h1>Made to be worn.<br>Hard to ignore.</h1><p>Oversized tees.<br>Extraordinary characters.</p></div><div class="hero-studio" data-hero-item data-depth><div class="orbital-track" aria-hidden="true"></div><div class="floor-shadow" aria-hidden="true"></div><button class="hero-step previous" data-hero-step="-1" aria-label="Previous tee">'+arrow('left')+chevron('left')+'</button><button class="hero-product" data-product-id="'+p.id+'" aria-label="View '+esc(p.name)+' tee"><div class="hero-depth" data-depth-layer><div class="hero-float" data-float>'+garment(p,'hero-main-image',true)+'</div></div></button><button class="hero-step next" data-hero-step="1" aria-label="Next tee">'+arrow()+chevron('right')+'</button></div><div class="feature-info" aria-live="polite">'+featuredInfo(c,p)+'</div><div class="hero-controls"><div class="selection-label">Featured Collections<span>Choose your rotation</span></div>'+heroMarquee(p)+'</div></section>';
   if(scroll) requestAnimationFrame(()=>document.querySelector('#collections')?.scrollIntoView({behavior:'instant'}));
   stopMarquee=window.CosmicMarquee?.init(main.querySelector('.hero-marquee'))||(()=>{});
+  scheduleHeroAuto();
  }
- function stepHero(dir){
+ // Hero: move to the next tee (in strip order) every 8 seconds. Any manual change (arrows, strip, keys)
+ // restarts the 8-second countdown. Pauses while hovering the tee, with a window open, in a hidden tab,
+ // or with reduced/paused motion.
+ const HERO_AUTO_MS=8000;let heroAutoTimer=0;
+ function stopHeroAuto(){clearTimeout(heroAutoTimer);heroAutoTimer=0;}
+ function scheduleHeroAuto(){
+  stopHeroAuto();
+  heroAutoTimer=setTimeout(()=>{
+   const studio=main.querySelector('.hero-studio');if(!studio)return;
+   const blocked=document.hidden||studio.matches(':hover')||document.querySelector('dialog[open]')||matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.hasAttribute('data-motion-paused');
+   if(!blocked)stepHero(1,true);
+   scheduleHeroAuto();
+  },HERO_AUTO_MS);
+ }
+ function stepHero(dir,auto=false){
+  if(!auto)scheduleHeroAuto();
   const seq=heroSequence();if(!seq.length)return;
   const current=heroProductId||featured[active].featured;
   const i=Math.max(0,seq.findIndex(p=>p.id===current));
@@ -101,14 +117,14 @@
  function updateAllProducts(){const grid=document.querySelector('#all-products');if(!grid)return;const query=searchTerm.trim().toLowerCase();const list=products.filter(p=>(selectedFilter==='all'||p.collection===selectedFilter)&&(!query||(p.name+' '+collections.find(c=>c.id===p.collection).name).toLowerCase().includes(query)));if(selectedSort==='az')list.sort((a,b)=>a.name.localeCompare(b.name));if(selectedSort==='za')list.sort((a,b)=>b.name.localeCompare(a.name));document.querySelector('#product-count').textContent=list.length+' '+(list.length===1?'design':'designs');main.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===selectedFilter)));grid.innerHTML=list.length?cards(list):'<div class="empty-results"><h2>No designs found.</h2><p>Try another name or explore all tees.</p><button type="button" data-reset-filters>Reset filters</button></div>';}
 
  function renderNotFound(){main.innerHTML='<section class="route-page"><h1 class="all-title">A little off course.</h1><p>This Laundry could not be found.</p><a class="text-link" href="#/collections">Back to all Laundries</a></section>';}
- function route(){stopLaundryRotation();stopMarquee();stopMarquee=()=>{};token++;categoryToken++;window.CosmicMotion?.destroy();const path=location.hash.slice(1)||'/';document.title='Cosmic Laundry';const isHome=path==='/'||path==='/collections'||path==='main'||path==='/about';document.body.classList.toggle('is-home',isHome);if(isHome)renderHome(path==='/collections');else if(path.startsWith('/laundry/'))renderCollection(path.slice(9));else if(path==='/all')renderAll();else renderNotFound();if(path!=='/collections')window.scrollTo({top:0,behavior:'instant'});window.CosmicMotion?.init(document);main.focus({preventScroll:true});document.querySelectorAll('.site-header nav a').forEach(a=>{const match=a.hash===location.hash||(a.hash==='#/collections'&&path.startsWith('/laundry/'));if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}
+ function route(){stopLaundryRotation();stopHeroAuto();stopMarquee();stopMarquee=()=>{};token++;categoryToken++;window.CosmicMotion?.destroy();const path=location.hash.slice(1)||'/';document.title='Cosmic Laundry';const isHome=path==='/'||path==='/collections'||path==='main'||path==='/about';document.body.classList.toggle('is-home',isHome);if(isHome)renderHome(path==='/collections');else if(path.startsWith('/laundry/'))renderCollection(path.slice(9));else if(path==='/all')renderAll();else renderNotFound();if(path!=='/collections')window.scrollTo({top:0,behavior:'instant'});window.CosmicMotion?.init(document);main.focus({preventScroll:true});document.querySelectorAll('.site-header nav a').forEach(a=>{const match=a.hash===location.hash||(a.hash==='#/collections'&&path.startsWith('/laundry/'));if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}
  document.addEventListener('click',e=>{
   const t=e.target;
   if(t.closest('a[href="#main"]')){e.preventDefault();main.focus();return;}
    if(t.closest('a.brand')&&(location.hash===''||location.hash==='#/')){e.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return;}
   const step=t.closest('[data-hero-step]');if(step){stepHero(Number(step.dataset.heroStep));return;}
   const select=t.closest('[data-hero-select]');if(select){selectHero(Number(select.dataset.heroSelect));return;}
-   const pick=t.closest('[data-hero-product]');if(pick){const prod=getProduct(pick.dataset.heroProduct);if(prod)selectHero(featured.findIndex(c=>c.id===prod.collection),prod.id);return;}
+   const pick=t.closest('[data-hero-product]');if(pick){const prod=getProduct(pick.dataset.heroProduct);if(prod){scheduleHeroAuto();selectHero(featured.findIndex(c=>c.id===prod.collection),prod.id);}return;}
   const cat=t.closest('[data-category-select]');if(cat){selectCategory(cat.dataset.categorySelect);return;}
   const filter=t.closest('[data-filter]');if(filter){selectedFilter=filter.dataset.filter;updateAllProducts();return;}
   if(t.closest('[data-reset-filters]')){selectedFilter='all';searchTerm='';document.querySelector('#product-search').value='';updateAllProducts();document.querySelector('#product-search').focus();return;}
