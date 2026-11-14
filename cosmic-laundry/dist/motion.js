@@ -254,10 +254,14 @@
     return () => { tween.scrollTrigger?.kill(); tween.revert(); restores.forEach(restore => restore()); };
   }
 
+  // The 3D garment viewer is switched off: the hero and Laundry pages show the original tee photo,
+  // which always matches the mockup exactly. Set to true to bring the 3D viewer back.
+  const USE_3D_SHOWROOM = false;
+
   function setup(root) {
     prune();
     syncControls();
-    all(root, '.hero-studio, .laundry-stage, .product-showroom-stage').forEach(stage => {
+    if (USE_3D_SHOWROOM) all(root, '.hero-studio, .laundry-stage, .product-showroom-stage').forEach(stage => {
       if (stage.closest('[hidden]') || (stage.closest('dialog') && !stage.closest('dialog').open)) return;
       register(stage, 'showroom', () => {
       if (!stage.querySelector('.hero-product, .category-garment, [data-showroom-product]')) return;
