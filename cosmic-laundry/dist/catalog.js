@@ -21,7 +21,7 @@ window.CosmicCatalog = {
     {id:'a-bum',name:'A BUM',collection:'bad-influence',asset:'a-bum',color:'White',description:'Will flex for protein. The A BUM design on a white oversized tee.'}
   ],
   commerce: {mode:'preview',currency:'LKR',checkoutUrl:null},
-  featuredLabel:'Featured designs'
+  featuredLabel:'Featured Collections'
 };
 window.CosmicCatalog.products.forEach(p=>{
   p.image='assets/products/'+p.asset+'.webp'; p.thumbnail='assets/products/'+p.asset+'-480.webp';

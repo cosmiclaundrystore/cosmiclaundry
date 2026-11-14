@@ -14,7 +14,7 @@
 .feature-info h2,
 .product-meta h2,
 .collection-card-info h3 { overflow-wrap: anywhere; min-width: 0; }
-.category-thumbnails button { overflow-wrap: anywhere; hyphens: auto; }
+.category-thumbnails button { width: auto; min-width: 76px; padding-inline: 8px; overflow-wrap: normal; white-space: nowrap; }
 @media (max-width: 650px) {
   .category-feature-info { flex-wrap: wrap; }
   .category-feature-info > div,
@@ -61,5 +61,161 @@ body > .site-footer { flex-shrink: 0; }
 body > main { flex: 1 0 auto; display: flex; flex-direction: column; }
 body > main > * { flex-shrink: 0; }
 /* On short pages, centre the page's own content in the extra space instead of leaving it all below. */
-body > main > .about-page,
 body > main > section.route-page { flex-grow: 1; align-content: center; }
+
+/* Slightly larger logos (about +20%). object-fit keeps the logo's proportions. */
+.site-header .brand img { width: 60px; height: 72px; object-fit: contain; }
+.footer-brand img { width: 80px; height: 88px; object-fit: contain; }
+@media (max-width: 650px) {
+  .site-header .brand img { width: 46px; height: 56px; }
+  .footer-brand img { width: 62px; height: 72px; }
+}
+@media (max-width: 370px) {
+  .site-header .brand img { width: 40px; height: 50px; }
+}
+
+/* Footer: tagline sits under the logo on one line, the centre is left empty. */
+.footer-identity { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; }
+.site-footer .footer-top p.footer-tagline {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+@media (max-width: 650px) {
+  .footer-identity { gap: 12px; }
+  .site-footer .footer-top p.footer-tagline { font-size: 13px; letter-spacing: .04em; }
+}
+
+/* Product window: Front | Back photo views with zoom that follows the cursor. */
+.cl-product-stage .cl-photo-panel { min-height: 0; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+.cl-product-stage .cl-photo-views { flex: 0 0 auto; margin-top: 16px; }
+.cl-product-stage .cl-photo-views button { min-width: 92px; font-size: 13px; }
+.cl-product-zoom { touch-action: manipulation; border-radius: 6px; }
+.cl-product-zoom .cl-product-picture {
+  transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
+  transition: transform .25s cubic-bezier(.2,.7,.2,1);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.cl-product-zoom[aria-pressed="true"] .cl-product-picture,
+.cl-product-zoom.is-zoomed .cl-product-picture { transform: scale(var(--zoom-scale, 2.4)); }
+.cl-product-zoom.is-zoomed { cursor: zoom-out !important; touch-action: none; }
+.cl-product-zoom .cl-zoom-label { pointer-events: none; transition: opacity .2s; }
+.cl-product-zoom.is-zoomed .cl-zoom-label { opacity: 0; }
+.cl-zoom-hint-touch { display: none; }
+@media (hover: none) {
+  .cl-zoom-hint-hover { display: none; }
+  .cl-zoom-hint-touch { display: inline; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cl-product-zoom .cl-product-picture { transition: none; }
+}
+[data-motion-paused] .cl-product-zoom .cl-product-picture { transition: none; }
+@media (min-width: 801px) and (min-height: 501px) {
+  .cl-product-stage .cl-photo-panel .cl-product-zoom,
+  .cl-product-stage .cl-product-picture { height: clamp(320px, calc(min(820px, 100dvh - 64px) - 150px), 640px); max-height: none; }
+}
+
+/* Laundry Basket: WhatsApp checkout button */
+.cl-button-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-weight: 600; }
+.cl-button-whatsapp > span { flex: 1 1 auto; text-align: left; }
+.cl-button-whatsapp .cl-whatsapp-icon { width: 20px; height: 20px; flex: 0 0 auto; }
+
+/* Hero tee name: never split a word (e.g. BOBLIFTSCRAZY); hero-fit.js shrinks the font to fit one line instead. */
+.hero .feature-info h2 { overflow-wrap: normal; word-break: normal; hyphens: manual; min-width: 0; max-width: 100%; }
+
+/* Laundry pages: the tinted hero starts right under the navbar; the "All Laundries" link sits inside it. */
+.laundry-page { padding-top: 0; position: relative; }
+.laundry-page > .breadcrumb {
+  position: absolute;
+  z-index: 6;
+  top: 18px;
+  left: 0;
+  margin: 0 0 0 var(--page-gutter);
+  color: #c4d4e8;
+}
+.laundry-page > .breadcrumb:hover { color: #fff; }
+.laundry-page .laundry-intro { border-top: 0; padding-top: 88px; }
+@media (max-width: 1150px) { .laundry-page .laundry-intro { padding-top: 84px; } }
+@media (max-width: 650px) {
+  .laundry-page > .breadcrumb { top: 12px; }
+  .laundry-page .laundry-intro { padding-top: 70px; }
+}
+
+/* Hero: position of the shown tee within its collection (e.g. "· 2 / 3"). */
+.feature-laundry .feature-count { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Mobile navigation: hamburger + full-screen menu (phones only). */
+.menu-toggle, .mobile-menu { display: none; }
+.menu-toggle, .menu-close {
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; color: var(--ink); cursor: pointer;
+  align-items: center; justify-content: center;
+}
+.menu-toggle svg, .menu-close svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.menu-toggle:hover, .menu-close:hover { background: #a8caff1a; }
+
+@media (max-width: 650px) {
+  .site-header > nav { display: none; }
+  .site-header .bag-button { margin-left: auto; }
+  .menu-toggle { display: inline-flex; margin-left: 4px; margin-right: -10px; }
+
+  .mobile-menu[open] {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0 var(--page-gutter) 32px;
+    border: 0;
+    background: radial-gradient(ellipse at 50% 30%, #1a3a5e 0%, #071426 70%);
+    color: var(--ink);
+    overflow-y: auto;
+    animation: menu-in .25s ease-out;
+  }
+  .mobile-menu::backdrop { background: #071426; }
+  .mobile-menu-top { display: flex; align-items: center; justify-content: space-between; height: 78px; flex: 0 0 auto; border-bottom: 1px solid var(--line); }
+  .mobile-menu-top .menu-close { display: inline-flex; margin-right: -10px; }
+  .mobile-menu-nav { display: flex; flex-direction: column; justify-content: center; flex: 1 0 auto; padding: 32px 0; }
+  .mobile-menu-main {
+    font-size: clamp(40px, 13vw, 56px); line-height: 1.05; letter-spacing: -.05em; font-weight: 400;
+    color: var(--ink); text-decoration: none; padding: 8px 0;
+  }
+  .mobile-menu a:hover, .mobile-menu a[aria-current="page"] { color: #fff; }
+  .mobile-menu a[aria-current="page"]::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #a8caff; margin-right: 12px; flex: 0 0 auto; }
+  .mobile-menu-main[aria-current="page"] { display: flex; align-items: center; }
+  html.menu-open { overflow: hidden; }
+}
+@keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .mobile-menu[open] { animation: none; } }
+
+/* Hero arrows: minimal < > chevrons on phones, beside the tee's body instead of over it. */
+.hero-step .chevron-icon { display: none; }
+@media (max-width: 650px) {
+  .hero-step,
+  .hero-step:hover {
+    top: 66%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 56px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #d7e6ff;
+  }
+  .hero-step:active { background: #a8caff1a; }
+  /* Full-size tee; arrows sit at the screen edges, level with the tee's body (narrower than the sleeves). */
+  .hero-step.previous { left: calc(-1 * var(--page-gutter) + 2px); }
+  .hero-step.next { right: calc(-1 * var(--page-gutter) + 2px); }
+  .hero-step .arrow-icon { display: none; }
+  .hero-step .chevron-icon { display: block; width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+}

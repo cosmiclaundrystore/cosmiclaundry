@@ -16,3 +16,29 @@
     window.addEventListener('resize', measure, { passive: true });
   }
 })();
+
+/* Shrinks the hero tee name just enough that a single long word fits on one line. */
+(() => {
+  'use strict';
+  const MIN = 18;
+  function fitTitles() {
+    document.querySelectorAll('.hero .feature-info h2').forEach(title => {
+      title.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(title).fontSize);
+      while (title.scrollWidth > title.clientWidth + 1 && size > MIN) {
+        size -= 1;
+        title.style.fontSize = size + 'px';
+      }
+    });
+  }
+  let frame = 0;
+  const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(fitTitles); };
+  const start = () => {
+    const main = document.querySelector('#main');
+    if (main) new MutationObserver(schedule).observe(main, { childList: true, subtree: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    document.fonts?.ready.then(schedule);
+    schedule();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
