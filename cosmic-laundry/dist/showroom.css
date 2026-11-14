@@ -1,0 +1,35 @@
+/* Actual garment scene in the midnight studio; all controls remain HTML. */
+.has-showroom{isolation:isolate;position:relative;perspective:1100px}
+.showroom-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity .28s}
+.has-showroom[data-showroom-ready=true] .showroom-canvas{opacity:1}
+.has-showroom .hero-product,.has-showroom .category-garment,.has-showroom [data-showroom-product]{z-index:2;cursor:grab}
+.has-showroom[data-showroom-ready=true] [data-depth-layer]{opacity:0!important;pointer-events:none}
+.has-showroom .orbital-track{display:none}
+.has-showroom .theme-environment{opacity:.12}
+.has-showroom .floor-shadow{z-index:0}
+.showroom-dragging .hero-product,.showroom-dragging .category-garment,.showroom-dragging [data-showroom-product]{cursor:grabbing}
+.showroom-controls{position:absolute;z-index:5;left:50%;bottom:-51px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:0;max-width:100%;padding:4px;border:1px solid #799dc03f;border-radius:100px;background:#091b2eeb;color:#c7d9ed;box-shadow:0 8px 28px #010a1438;white-space:nowrap;backdrop-filter:blur(12px)}
+.showroom-controls button{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;min-width:44px;padding:0 9px;background:transparent;color:inherit;border:0;border-radius:30px;font:inherit;font-size:10px;letter-spacing:.025em;transition:color .2s,background .2s;cursor:pointer}
+.showroom-controls button:hover{background:#aacfff18;color:#fff}
+.showroom-controls button:focus-visible{outline:2px solid #c5ddfa;outline-offset:2px}
+.showroom-controls button:disabled{opacity:.55;cursor:default}
+.showroom-controls svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.showroom-control-divider{width:1px;height:14px;background:#8aa7c533;margin:0 3px}
+.showroom-orbit-icon{position:relative;display:block;width:13px;height:9px;border:1px solid currentColor;border-radius:50%;transform:rotate(-30deg)}
+.showroom-orbit-icon::after{content:'';position:absolute;top:-2px;right:1px;width:3px;height:3px;background:currentColor;border-radius:50%}
+.showroom-controls [aria-pressed=true]{color:#e4efff;background:#94bcf310}
+.showroom-help,.showroom-announcement{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.showroom-load-status{position:absolute;z-index:4;bottom:11px;left:50%;transform:translateX(-50%);padding:8px 13px;border:1px solid #728caa3d;border-radius:20px;background:#091b2eea;color:#c8d8ed;font-size:11px;white-space:nowrap;pointer-events:none}
+.showroom-load-status[hidden]{display:none}
+.showroom-view-label{position:absolute;z-index:3;top:3px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;color:#94accb;white-space:nowrap;pointer-events:none;opacity:0}
+.has-showroom[data-showroom-ready=true] .showroom-view-label{opacity:.9}
+.hero-studio.has-showroom{margin-bottom:34px}
+.laundry-stage.has-showroom{margin-bottom:46px}
+.has-showroom .inspect-hint{bottom:-3px}
+.has-showroom[data-showroom-renderer=photo] .hero-product,.has-showroom[data-showroom-renderer=photo] .category-garment{cursor:pointer}
+.product-showroom-stage{height:460px;position:relative;margin-bottom:66px}
+.product-showroom-stage [data-showroom-product]{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;color:inherit;padding:0}
+.product-showroom-stage [data-depth-layer],.product-showroom-stage [data-depth-layer] img{width:100%;height:100%;object-fit:contain}
+@media(max-width:950px){.showroom-controls{bottom:-47px}.showroom-controls button{padding:0 8px}.hero-studio.has-showroom{margin-bottom:42px}.laundry-stage.has-showroom{margin-bottom:51px}}
+@media(max-width:650px){.showroom-controls{bottom:-49px;padding:3px}.showroom-controls button{font-size:10px;padding:0 6px}.hero-studio.has-showroom{margin-bottom:52px}.laundry-stage.has-showroom{margin-bottom:53px}.showroom-view-label{top:0;font-size:8px}.product-showroom-stage{height:300px}.showroom-orbit-icon{display:none}}
+@media(prefers-reduced-motion:reduce){.showroom-controls button,.showroom-canvas{transition:none}}

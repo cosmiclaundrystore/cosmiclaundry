@@ -1,0 +1,302 @@
+[
+  {
+    "file_name": "White Logo.png",
+    "library_file_id": "libfile_792184f75bb0819190a96a38e5cdc78b",
+    "file_id": "file_00000000b94882118194a355446fa99c",
+    "version": 0,
+    "size_bytes": 771770,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\White Logo.png",
+    "web_filename": "white-logo.webp",
+    "description": "White Cosmic Laundry washing-machine planet logo and stacked wordmark; grunge texture/transparency.",
+    "width": 1254,
+    "height": 1254,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      23,
+      1248,
+      1254
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\white-logo.webp",
+    "web_size_bytes": 374788,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Main logo.png",
+    "library_file_id": "libfile_59b989e412cc81919cc657365fe31639",
+    "file_id": "file_000000005d048211be0b4013bfd3223b",
+    "version": 0,
+    "size_bytes": 783817,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Main logo.png",
+    "web_filename": "main-logo.webp",
+    "description": "Navy and cyan Cosmic Laundry washing-machine planet logo and stacked wordmark.",
+    "width": 1254,
+    "height": 1254,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      92,
+      1178,
+      1254
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\main-logo.webp",
+    "web_size_bytes": 484240,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Black.png",
+    "library_file_id": "libfile_9a0b51f1b2808191b5c076fdc4af3254",
+    "file_id": "file_0000000066388211b000b0b76967502c",
+    "version": 0,
+    "size_bytes": 2627278,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Black.png",
+    "web_filename": "black.webp",
+    "description": "Back of black oversized tee, small white Cosmic Laundry logo near collar; navy studio background.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\black.webp",
+    "web_size_bytes": 1244846,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "White.png",
+    "library_file_id": "libfile_9a8114bc8bb48191a229e51234fcd91b",
+    "file_id": "file_00000000031882118ddb3502cb379dae",
+    "version": 0,
+    "size_bytes": 2433345,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\White.png",
+    "web_filename": "white.webp",
+    "description": "Back of white oversized tee, small navy/cyan Cosmic Laundry logo near collar; navy studio background.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\white.webp",
+    "web_size_bytes": 1119388,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Sponge Bob.png",
+    "library_file_id": "libfile_88e2b4bfac448191ab7d8b1538aaa109",
+    "file_id": "file_00000000bde88211b11d75a33b884da2",
+    "version": 0,
+    "size_bytes": 2605144,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Sponge Bob.png",
+    "web_filename": "spongebob.webp",
+    "description": "Front of white oversized tee with muscular SpongeBob gym scene, BOBLIFTSCRAZY and Bikini Bottom Fitness lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\spongebob.webp",
+    "web_size_bytes": 1270842,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Rick and Morty.png",
+    "library_file_id": "libfile_affc8abbb1a48191bb4cbf325355b312",
+    "file_id": "file_0000000013a88211adad69563b61bb6e",
+    "version": 0,
+    "size_bytes": 2615612,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Rick and Morty.png",
+    "web_filename": "rick-and-morty.webp",
+    "description": "Front of black oversized tee with Rick and Morty in vivid neon portal and GET SCHWIFTY lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\rick-and-morty.webp",
+    "web_size_bytes": 1288450,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Popeye.png",
+    "library_file_id": "libfile_bc4bba45c4e48191a017ce7642b07ffb",
+    "file_id": "file_000000009cf08211b5dac40981b854ba",
+    "version": 0,
+    "size_bytes": 2502419,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Popeye.png",
+    "web_filename": "popeye.webp",
+    "description": "Front of white oversized tee with Popeye curling a barbell and EVERYDAYS ARM DAY lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\popeye.webp",
+    "web_size_bytes": 1156054,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Mona Splita.png",
+    "library_file_id": "libfile_6cf5cf9b1b4481918f6c0f0e8dc6bc2e",
+    "file_id": "file_00000000e2908211852dcaa4fc72b2d4",
+    "version": 0,
+    "size_bytes": 2703218,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Mona Splita.png",
+    "web_filename": "mona-splita.webp",
+    "description": "Front of black oversized tee with seated muscular Mona Lisa in Renaissance dress and Mona Splita lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\mona-splita.webp",
+    "web_size_bytes": 1357286,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Mona Lifta.png",
+    "library_file_id": "libfile_8ab1d389e05881918c707cee5579c183",
+    "file_id": "file_00000000fda48211bb6102cf4f2f7de6",
+    "version": 0,
+    "size_bytes": 2827899,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Mona Lifta.png",
+    "web_filename": "mona-lifta.webp",
+    "description": "Front of black oversized tee with muscular Mona Lisa portrait and Mona Lifta lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\mona-lifta.webp",
+    "web_size_bytes": 1436164,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Tren Lisa.png",
+    "library_file_id": "libfile_1dab335ec1608191a48e41ad5ae28b90",
+    "file_id": "file_0000000099a882119cafeff858bf85b5",
+    "version": 0,
+    "size_bytes": 2568545,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Tren Lisa.png",
+    "web_filename": "tren-lisa.webp",
+    "description": "Front of black oversized tee with muscular Mona Lisa holding vial and syringe and Tren Lisa lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\tren-lisa.webp",
+    "web_size_bytes": 1290728,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "Megatron.png",
+    "library_file_id": "libfile_33b108fc6b808191b24bc70cf8f90bac",
+    "file_id": "file_00000000b4f08211ac39923d15bac468",
+    "version": 0,
+    "size_bytes": 2642246,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\Megatron.png",
+    "web_filename": "megatron.webp",
+    "description": "Front of white oversized tee with Meg Griffin cartoon and MEGATRON GRIFFIN lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\megatron.webp",
+    "web_size_bytes": 1308228,
+    "pixel_exact": true
+  },
+  {
+    "file_name": "stewie.png",
+    "library_file_id": "libfile_c725fd86a4748191882a8791668741df",
+    "file_id": "file_0000000002208211bbf89e03bfa76cf5",
+    "version": 0,
+    "size_bytes": 2502681,
+    "local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\cosmic-assets-originals\\stewie.png",
+    "web_filename": "stewie.webp",
+    "description": "Front of white oversized tee with muscular Stewie and IT DOESN\u2019T HAVE TO MAKE SENSE WHEN YOU LOOK LIKE THIS lettering.",
+    "width": 1122,
+    "height": 1402,
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "alpha_bounds": [
+      0,
+      0,
+      1122,
+      1402
+    ],
+    "web_local_path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-19\\github-plugin-github-openai-curated-remote\\work\\components\\assets\\stewie.webp",
+    "web_size_bytes": 1206738,
+    "pixel_exact": true
+  }
+]

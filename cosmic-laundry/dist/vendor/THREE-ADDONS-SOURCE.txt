@@ -1,0 +1,12 @@
+Three.js addons, release r180 (Three.js 0.180.0)
+MIT license: see THREE-LICENSE.txt.
+
+GLTFLoader.js
+https://raw.githubusercontent.com/mrdoob/three.js/r180/examples/jsm/loaders/GLTFLoader.js
+
+BufferGeometryUtils.js
+https://raw.githubusercontent.com/mrdoob/three.js/r180/examples/jsm/utils/BufferGeometryUtils.js
+
+Only import specifiers were changed to use the already-vendored local
+three.module.js and BufferGeometryUtils.js files. No decoder is required by
+the uncompressed oversized-tee.glb garment asset.

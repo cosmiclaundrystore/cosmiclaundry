@@ -1,0 +1,65 @@
+/* Site-wide responsive fixes, loaded after every other stylesheet. */
+
+/* Wide and ultra-wide screens: backgrounds stay full-bleed, but content stops growing at 1600px and
+   sits centred. Every section's side padding comes from --page-gutter, so widening it centres all of it. */
+@media (min-width: 1700px) {
+  :root { --page-gutter: max(76px, calc((100vw - 1600px) / 2)); }
+}
+
+/* The small "360° view · drag to turn" label dropped to 8–9px; keep it readable. */
+.showroom-view-label { font-size: 10px; letter-spacing: .14em; }
+
+/* Long tee names (e.g. BOBLIFTSCRAZY) must wrap instead of pushing buttons off-screen. */
+.category-feature-info h2,
+.feature-info h2,
+.product-meta h2,
+.collection-card-info h3 { overflow-wrap: anywhere; min-width: 0; }
+.category-thumbnails button { overflow-wrap: anywhere; hyphens: auto; }
+@media (max-width: 650px) {
+  .category-feature-info { flex-wrap: wrap; }
+  .category-feature-info > div,
+  .category-feature-info h2 { flex: 1 1 140px; min-width: 0; }
+  .category-feature-info .primary-link { flex: 0 0 auto; }
+}
+@media (max-width: 370px) {
+  .category-thumbnails button { font-size: 10px; }
+}
+
+/* Landscape phones and other short screens: the product window uses the whole screen and the
+   3D view is sized to the screen height so the whole tee stays visible. */
+@media (max-height: 500px) and (orientation: landscape) {
+  .cl-product-dialog {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+  }
+  .cl-product-stage { padding: 12px 18px 10px; min-height: 0; height: auto; justify-content: flex-start; }
+  .product-showroom-stage { height: max(160px, calc(100dvh - 200px)); margin-bottom: 56px; }
+  .cl-photo-panel { min-height: 0; }
+  .cl-photo-panel .cl-product-zoom,
+  .cl-product-picture,
+  .cl-product-zoom { max-height: max(200px, calc(100dvh - 120px)); }
+  .cl-model-note { display: none; }
+  .cl-inspection-modes { margin-top: 4px; }
+  .showroom-view-label { display: none; }
+  .info-dialog { max-height: calc(100dvh - 24px); overflow-y: auto; }
+}
+
+/* Footer always sits at the bottom of the screen: the page is a full-height column and the main area
+   grows to fill whatever space short pages (About, empty search, not found) leave. Long pages are unaffected. */
+html { height: 100%; }
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+body > .site-header,
+body > .site-footer { flex-shrink: 0; }
+body > main { flex: 1 0 auto; display: flex; flex-direction: column; }
+body > main > * { flex-shrink: 0; }
+/* On short pages, centre the page's own content in the extra space instead of leaving it all below. */
+body > main > .about-page,
+body > main > section.route-page { flex-grow: 1; align-content: center; }

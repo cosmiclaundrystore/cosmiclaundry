@@ -1,0 +1,31 @@
+{
+  "method": "Built-in image generation; retrieved character assets where generation was rejected",
+  "generated": [
+    {
+      "file": "dist/assets/sponge-animated.webp",
+      "prompt": "Use case: illustration-story. Asset type: a category cover for the Cosmic Laundry clothing website, NOT a clothing product design. Make a polished horizontal 3:2 illustration (1536x1024). Authentic hand-drawn 2D animated television look: confident ink outlines, crisp flat color and restrained cel shadows. Charming well-composed character scene, professional animation key art, NOT photorealistic, NOT 3D, NOT a mockup. Full-bleed edge-to-edge scene, NO typography, NO logos, NO watermark, NO border. Characters occupy approximately the central 70 percent with visible head and feet, safely away from edges. Composition reads clearly at 400px wide. Actual SpongeBob SquarePants and Patrick Star in the instantly recognizable SpongeBob 2D television animation style. SpongeBob cheerful square yellow sponge with white shirt red tie brown square pants tall socks and black shoes. Patrick pink starfish with green purple floral shorts grinning. Full body characters standing on the sandy sea floor of Bikini Bottom; a small recognizable pineapple house to one side in background, classic subtle flower shapes in blue-turquoise underwater sky. Characters friendly and energetic, beautifully clean linework faithful to original animated proportions. A few little bubbles. Balanced simple scene, very readable and no extra characters."
+    },
+    {
+      "file": "dist/assets/mona-animated.webp",
+      "prompt": "Use case: illustration-story. Asset type: a category cover for the Cosmic Laundry clothing website, NOT a clothing product design. Make a polished horizontal 3:2 illustration (1536x1024). Authentic hand-drawn 2D animated television look: confident ink outlines, crisp flat color and restrained cel shadows. Charming well-composed character scene, professional animation key art, NOT photorealistic, NOT 3D, NOT a mockup. Full-bleed edge-to-edge scene, NO typography, NO logos, NO watermark, NO border. Characters occupy approximately the central 70 percent with visible head and feet, safely away from edges. Composition reads clearly at 400px wide. Mona Lisa as an expressive 2D animated character, recognizably based on Leonardo da Vinci's Mona Lisa portrait: long dark hair, dark Renaissance dress and folded hands, subtle knowing half-smile. She sits front and center within a simple elegant antique ochre-gold painting frame, with the frame visible in full. The actual painting is transformed into clean cel-animated illustration, not a photograph of art. Muted sage green rolling landscape and hazy blue hills in the framed background; deep desaturated teal and cream surrounding flat background with two small star doodles as a subtle cosmic reference. Vintage sensibility but absolutely cartoon animated drawing. Quiet, sophisticated humor. No ornate museum room, no extra boxes."
+    },
+    {
+      "file": "dist/assets/gym-animated.webp",
+      "prompt": "Use case: illustration-story. Asset type: a category cover for the Cosmic Laundry clothing website, NOT a clothing product design. Make a polished horizontal 3:2 illustration (1536x1024). Authentic hand-drawn 2D animated television look: confident ink outlines, crisp flat color and restrained cel shadows. Charming well-composed character scene, professional animation key art, NOT photorealistic, NOT 3D, NOT a mockup. Full-bleed edge-to-edge scene, NO typography, NO logos, NO watermark, NO border. Characters occupy approximately the central 70 percent with visible head and feet, safely away from edges. Composition reads clearly at 400px wide. An expressive original 2D animated muscular anthropomorphic planet character lifting two dark dumbbells. Slate-blue round planet body with a simple thin lavender orbital ring, human muscular cartoon arms, small expressive confident face, simple black training shorts and sneakers. Planted stance, full figure centered, dumbbells held outward. Inventive premium cartoon sports illustration, strong clean silhouette, thick assured outlines. Very simple muted lavender gym backdrop with two minimal weight plates resting on floor, flat palette lilac, charcoal and periwinkle with cream accents. Understated cosmic gym attitude. No anatomical realism, no lettering, no rendered materials."
+    },
+    {
+      "file": "dist/assets/island-animated.webp",
+      "prompt": "Use case: illustration-story. Asset type: a category cover for the Cosmic Laundry clothing website, NOT a clothing product design. Make a polished horizontal 3:2 illustration (1536x1024). Authentic hand-drawn 2D animated television look: confident ink outlines, crisp flat color and restrained cel shadows. Charming well-composed character scene, professional animation key art, NOT photorealistic, NOT 3D, NOT a mockup. Full-bleed edge-to-edge scene, NO typography, NO logos, NO watermark, NO border. Characters occupy approximately the central 70 percent with visible head and feet, safely away from edges. Composition reads clearly at 400px wide. A lively Sri Lankan street scene in polished 2D animated cartoon style, absolutely not realistic. Main subject is an expressive teal-and-red Sri Lankan tuk-tuk in three-quarter view with a smiling Sri Lankan young adult driver visible at the open side, warm brown skin and casual cream shirt, one hand on handlebars. Full vehicle clearly contained in frame. A single coconut palm, small roadside tea stall and distant terracotta tiled roof simplify the backdrop. Warm apricot sky and cream road, dark green foliage, subtle tropical sunshine. Confident ink outlines, cinematic cartoon composition, flat warm cel colors. No letters on the tuk-tuk or any signs. No tourist photo look."
+    }
+  ],
+  "retrieved": [
+    {
+      "file": "dist/assets/family-animated.webp",
+      "source": "https://www.pngaaa.com/detail/3018635"
+    },
+    {
+      "file": "dist/assets/rick-animated.webp",
+      "source": "https://pngimg.com/image/101094"
+    }
+  ]
+}

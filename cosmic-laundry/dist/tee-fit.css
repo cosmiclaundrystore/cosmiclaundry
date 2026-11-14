@@ -1,0 +1,19 @@
+/* Always show the whole tee in collection and product cards.
+   The cards are grid containers, so a percentage image height was resolved against the auto-sized grid row
+   and the image took its height from its width instead. On wide cards it grew taller than the card and
+   overflow:hidden cut off the bottom of the shirt. Positioning the image against the card gives it a
+   definite box, and object-fit: contain then fits the full garment at any card size. */
+.collection-visual > img,
+.product-art > img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+/* Keep the open arrow and labels above the image. */
+.collection-visual > .card-open,
+.product-art > .product-open,
+.product-art > .product-3d-label { z-index: 2; }

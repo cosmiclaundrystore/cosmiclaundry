@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Backups and archives
+*.tar.gz
+
+# QA screenshots, reports and test intermediates
+qa-dark-blue/
+qa-garment-3d/
