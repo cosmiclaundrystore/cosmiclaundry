@@ -20,6 +20,7 @@
   function itemKey(item) { return JSON.stringify([item.id, item.color, item.size]); }
   function count() { return state.bag.reduce((sum, item) => sum + item.quantity, 0); }
   function imageFor(product, colorId) { return product.colors.find((color) => color.id === colorId)?.image || product.detailImage || product.image; }
+  function backFor(product, colorId) { return product.colors.find((color) => color.id === colorId)?.backImage || product.backImage; }
   function colorFor(product, colorId) { return product.colors.find((color) => color.id === colorId)?.label || 'As pictured'; }
   function collectionName(product) {
     const collections = state.config.collections;
@@ -29,16 +30,29 @@
     }
     return product.collectionLabel || product.collection || 'Cosmic Laundry';
   }
+  function formatLKR(amount) { return `${Math.round(amount).toLocaleString('en-US')} LKR`; }
   function priceText(product) {
     if (typeof product.price !== 'number' || !Number.isFinite(product.price)) return 'Pricing to be confirmed';
-    return new Intl.NumberFormat(state.config.locale || 'en-LK', { style: 'currency', currency: state.config.currency || 'LKR', maximumFractionDigits: 0 }).format(product.price);
+    return formatLKR(product.price);
   }
+  function basketTotal() {
+    let total = 0;
+    for (const item of state.bag) {
+      const product = state.products.get(item.id);
+      if (typeof product?.price !== 'number' || !Number.isFinite(product.price)) return null;
+      total += product.price * item.quantity;
+    }
+    return total;
+  }
+
   function cleanBag(value) {
     if (!Array.isArray(value)) return [];
     const merged = new Map();
     value.slice(0, 200).forEach((item) => {
       if (!item || typeof item !== 'object') return;
       const product = state.products.get(String(item.id));
+      // Baskets saved before tees came in two colours used 'pictured'; treat that as the tee's first colour.
+      if (product && item.color === 'pictured') item = { ...item, color: product.colors[0].id };
       if (!product || !product.colors.some((color) => color.id === item.color) || !product.sizes.includes(item.size)) return;
       const quantity = Math.min(99, Math.floor(Number(item.quantity)));
       if (!Number.isFinite(quantity) || quantity < 1) return;
@@ -107,8 +121,11 @@
         productDialog.querySelector('[data-cl-current-color]').textContent = colorFor(product, state.color);
       }
       if (event.target.name === 'cl-size') productDialog.querySelector('[data-cl-size-error]').hidden = true;
+      if (event.target.name === 'cl-quantity') setQuantity(event.target, Number(event.target.value) || 1);
     });
     productDialog.addEventListener('click', (event) => {
+      const qtyButton = event.target.closest('[data-cl-qty]');
+      if (qtyButton) { const input = productDialog.querySelector('input[name="cl-quantity"]'); setQuantity(input, (Number(input.value) || 1) + Number(qtyButton.dataset.clQty)); return; }
       if (event.target.closest('[data-cl-retry-image]')) {
         const picture = productDialog.querySelector('.cl-product-picture');
         const source = picture.getAttribute('src');
@@ -150,6 +167,15 @@
     });
   }
 
+  // Product window quantity: − n + stepper, kept between 1 and 99.
+  function setQuantity(input, value) {
+    const next = Math.min(99, Math.max(1, Math.round(value)));
+    input.value = String(next);
+    const group = input.closest('.cl-qty');
+    group.querySelector('[data-cl-qty="-1"]').disabled = next <= 1;
+    group.querySelector('[data-cl-qty="1"]').disabled = next >= 99;
+  }
+
   function showDialog(dialog, trigger) {
     if (!productDialog.open && !bagDialog.open) state.returnFocus = trigger || document.activeElement;
     if (productDialog.open && dialog !== productDialog) productDialog.close();
@@ -183,9 +209,8 @@
         <p class="cl-description">${escape(product.description || 'A familiar character. A completely different attitude. Make this oversized tee part of your rotation.')}</p>
         <form class="cl-product-form" novalidate>
           <fieldset class="cl-fieldset"><legend>Pictured color <span class="cl-selected-color" data-cl-current-color>${escape(colorFor(product, state.color))}</span></legend><div class="cl-color-options">${colors}</div></fieldset>
-          <fieldset class="cl-fieldset" aria-describedby="cl-size-note cl-size-error"><legend>${product.sizesConfirmed ? 'Size' : 'Preferred size'}</legend><div class="cl-size-options">${sizes}</div><p id="cl-size-error" class="cl-form-error" data-cl-size-error hidden>Please choose your preferred size.</p><p id="cl-size-note" class="cl-field-note">${product.sizesConfirmed ? 'Choose a size for your selection.' : 'Preference only. Available sizes and garment measurements are not confirmed.'}</p><details class="cl-size-guidance"><summary>Fit &amp; size guidance</summary><p>These are oversized T-shirt designs. A verified size chart is not available yet; choose your usual preference for now and check the final garment measurements before ordering.</p></details></fieldset>
-          <div class="cl-add-row"><label class="cl-quantity-label">Quantity<input type="number" name="cl-quantity" min="1" max="99" step="1" inputmode="numeric" value="1" required aria-label="Quantity"></label><button class="cl-button cl-button-primary" type="submit">Add to laundry basket ${arrowIcon}</button></div>
-          <p class="cl-product-note">This saves a selection, not an order. Pricing and availability are being confirmed.</p>
+          <fieldset class="cl-fieldset" aria-describedby="cl-size-note cl-size-error"><legend>${product.sizesConfirmed ? 'Size' : 'Preferred size'}</legend><div class="cl-size-options">${sizes}</div><p id="cl-size-error" class="cl-form-error" data-cl-size-error hidden>Please choose your preferred size.</p><p id="cl-size-note" class="cl-field-note">${product.sizesConfirmed ? 'Choose a size for your selection.' : 'Preference only. Available sizes and garment measurements are not confirmed.'}</p><details class="cl-size-guidance"><summary>Fit &amp; Size Guidance</summary><img class="cl-size-chart" src="assets/Size%20chart.png" alt="Oversized T-shirt size chart in inches. S: chest width 23.5, length 26. M: chest width 25, length 27. L: chest width 26.5, length 28. XL: chest width 28, length 29. Chest width is measured flat, armpit to armpit." width="1122" height="1402" loading="lazy" decoding="async"></details></fieldset>
+          <div class="cl-add-row"><div class="cl-qty-field"><span class="cl-qty-label" id="cl-qty-label">Quantity</span><div class="cl-qty" role="group" aria-labelledby="cl-qty-label"><button type="button" data-cl-qty="-1" aria-label="Decrease quantity" disabled>−</button><input type="number" name="cl-quantity" min="1" max="99" step="1" inputmode="numeric" value="1" required aria-label="Quantity"><button type="button" data-cl-qty="1" aria-label="Increase quantity">+</button></div></div><button class="cl-button cl-button-primary" type="submit">Add to laundry basket ${arrowIcon}</button></div>
         </form>
         <div class="cl-sr-only" data-cl-live aria-live="polite" aria-atomic="true"></div>
       </div>`;
@@ -270,7 +295,7 @@
     const isBack = state.view === 'back';
     const picture = productDialog.querySelector('.cl-product-picture');
     setImageStatus('loading');
-    picture.src = isBack ? product.backImage : imageFor(product, state.color);
+    picture.src = isBack ? backFor(product, state.color) : imageFor(product, state.color);
     picture.alt = isBack ? `${colorFor(product, state.color)} tee back reference, shared across this color` : `${product.name}, ${colorFor(product, state.color)}, front`;
     productDialog.querySelectorAll('[data-cl-view]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.clView === state.view)));
     const zoom = productDialog.querySelector('[data-cl-zoom]');
@@ -325,7 +350,7 @@
       <header class="cl-bag-header"><h2 id="cl-bag-title" tabindex="-1" data-cl-heading>Laundry Basket <span>${count()}</span></h2><button type="button" class="cl-icon-button" data-cl-close aria-label="Close laundry basket">${closeIcon}</button></header>
       <p class="cl-bag-status" data-cl-bag-status role="status"></p>
       ${state.removed ? `<div class="cl-undo-row"><span>${escape(state.products.get(state.removed.id).name)} removed</span><button type="button" data-cl-undo>Undo</button></div>` : ''}
-      ${state.bag.length ? `<ul class="cl-bag-items">${items}</ul><footer class="cl-bag-footer"><div class="cl-bag-summary"><span>${count()} ${count() === 1 ? 'piece' : 'pieces'} selected</span><span>Pricing to be confirmed</span></div><p class="cl-checkout-note" id="cl-checkout-reason">Send your laundry basket to us on WhatsApp. We’ll confirm price, size and delivery with you there.</p><a class="cl-button cl-button-primary cl-button-whatsapp cl-full-width" href="${escape(whatsappUrl())}" target="_blank" rel="noopener" aria-describedby="cl-checkout-reason" data-cl-whatsapp>${whatsappIcon}<span>Get Your Laundry</span>${arrowIcon}</a><button type="button" class="cl-button cl-button-secondary cl-full-width" data-cl-close>Keep exploring</button><p class="cl-storage-note">${state.persist ? 'Your laundry basket is saved on this device.' : 'Your browser could not save this laundry basket. Keep this tab open.'}</p></footer>` : `<div class="cl-empty-bag">${bagIcon}<h3>Room for a new favorite.</h3><p>Explore the Laundries and save your favourite designs here.</p><button type="button" class="cl-button cl-button-primary" data-cl-close>Explore the Laundries ${arrowIcon}</button></div>`}
+      ${state.bag.length ? `<ul class="cl-bag-items">${items}</ul><footer class="cl-bag-footer"><div class="cl-bag-summary"><span>${count()} ${count() === 1 ? 'piece' : 'pieces'} selected</span><span>${basketTotal() === null ? 'Pricing to be confirmed' : `Total ${formatLKR(basketTotal())}`}</span></div><p class="cl-checkout-note" id="cl-checkout-reason">Send your laundry basket to us on WhatsApp. We’ll confirm price, size and delivery with you there.</p><a class="cl-button cl-button-primary cl-button-whatsapp cl-full-width" href="${escape(whatsappUrl())}" target="_blank" rel="noopener" aria-describedby="cl-checkout-reason" data-cl-whatsapp>${whatsappIcon}<span>Get Your Laundry</span>${arrowIcon}</a><button type="button" class="cl-button cl-button-secondary cl-full-width" data-cl-close>Keep exploring</button><p class="cl-storage-note">${state.persist ? 'Your laundry basket is saved on this device.' : 'Your browser could not save this laundry basket. Keep this tab open.'}</p></footer>` : `<div class="cl-empty-bag">${bagIcon}<h3>Room for a new favorite.</h3><p>Explore the Laundries and save your favourite designs here.</p><button type="button" class="cl-button cl-button-primary" data-cl-close>Explore the Laundries ${arrowIcon}</button></div>`}
       <div class="cl-sr-only" data-cl-live aria-live="polite" aria-atomic="true"></div>`;
   }
 
@@ -340,9 +365,10 @@
     const lines = ['Hi Cosmic Laundry! I’d like to get my laundry:', ''];
     state.bag.forEach((item, index) => {
       const product = state.products.get(item.id);
-      lines.push(`${index + 1}. ${product.name} (${collectionName(product)})`, `   ${colorFor(product, item.color)} · Size ${item.size} · Qty ${item.quantity}`);
+      lines.push(`${index + 1}. ${product.name} (${collectionName(product)})`, `   ${colorFor(product, item.color)} · Size ${item.size} · Qty ${item.quantity} · ${priceText(product)}`);
     });
-    lines.push('', `Total: ${count()} ${count() === 1 ? 'piece' : 'pieces'}`);
+    const total = basketTotal();
+    lines.push('', `Total: ${count()} ${count() === 1 ? 'piece' : 'pieces'}${total === null ? '' : ` · ${formatLKR(total)}`}`);
     return lines.join('\n');
   }
   function whatsappUrl() {

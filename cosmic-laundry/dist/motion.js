@@ -22,7 +22,8 @@
   let pausedByUser = false;
   let showroomModule;
   let showroomPromise;
-  try { pausedByUser = localStorage.getItem('cosmic-motion-paused-v1') === 'true'; } catch {}
+  // The footer "Pause motion" button was removed, so clear any old saved pause instead of leaving visitors stuck paused.
+  try { localStorage.removeItem('cosmic-motion-paused-v1'); } catch {}
 
   const all = (root, selector) => [
     ...(root instanceof Element && root.matches(selector) ? [root] : []),
