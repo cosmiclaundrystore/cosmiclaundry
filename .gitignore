@@ -4,9 +4,11 @@
 # Dependencies
 node_modules/
 
-# Backups and archives
-*.tar.gz
+# Next.js
+.next/
+next-env.d.ts
+*.tsbuildinfo
 
-# QA screenshots, reports and test intermediates
-qa-dark-blue/
-qa-garment-3d/
+# Local env files and Vercel link
+.env*.local
+.vercel/

@@ -1,0 +1,171 @@
+/* The catalogue and individual Laundries share the homepage's warm palette.
+   Fonts outside the hero areas stay the shop's original type (Space Grotesk); only the Laundry hero uses the serif. */
+body:is(.is-catalog, .is-collection) { background: #FAF9F6; color: #20201e; }
+body.is-collection {
+  background-image:
+    radial-gradient(ellipse at 36% 42%, color-mix(in srgb, var(--hero-wash-primary) 22%, transparent), transparent 70%),
+    radial-gradient(ellipse at 67% 52%, color-mix(in srgb, var(--hero-wash-secondary) 17%, transparent), transparent 68%);
+  background-size: 100% 800px; background-repeat: no-repeat;
+  transition: --hero-wash-primary 1.1s cubic-bezier(.37,0,.63,1), --hero-wash-secondary 1.1s cubic-bezier(.37,0,.63,1);
+}
+body:is(.is-catalog, .is-collection) > .site-header { background: transparent; border-bottom: 0; }
+body:is(.is-catalog, .is-collection) > .site-footer { background: #f1efe9; border-top: 0; }
+.is-catalog .route-page { padding: 46px clamp(24px, 4vw, 72px) 80px; }
+.is-catalog .all-title { font-size: clamp(46px, 5.5vw, 80px); margin: 30px 0 36px; }
+.is-catalog .breadcrumb, .laundry-page > .breadcrumb { color: #686863; font-size: 12px; }
+:is(.is-catalog, .is-collection) .shop-search { max-width: 520px; gap: 12px; }
+:is(.is-catalog, .is-collection) .shop-search input {
+  background: #ffffff55; border: 1px solid #20201e30; border-radius: 4px;
+  min-height: 52px; padding: 14px 18px; color: #20201e;
+}
+:is(.is-catalog, .is-collection) .collection-filter-links { gap: 8px; margin: 28px 0 12px; }
+:is(.is-catalog, .is-collection) .collection-filter-links button {
+  background: transparent; border: 1px solid #20201e26; border-radius: 4px;
+  color: #55554e; padding: 11px 15px; transition: background .25s, border-color .25s;
+}
+:is(.is-catalog, .is-collection) .collection-filter-links button:hover { background: #20201e08; border-color: #20201e66; }
+:is(.is-catalog, .is-collection) .collection-filter-links button[aria-pressed=true] { background: #20201e; color: #FAF9F6; border-color: #20201e; }
+.is-catalog .sort-field select { border: 1px solid #20201e26; background: transparent; border-radius: 4px; }
+:is(.is-catalog, .is-collection) .shop-toolbar { padding: 26px 0; margin-bottom: 12px; }
+:is(.is-catalog, .is-collection) .product-grid { gap: 40px 24px; }
+:is(.is-catalog, .is-collection) .product-card { background: transparent; }
+:is(.is-catalog, .is-collection) .product-art {
+  background: #eeece580; border: 0; border-radius: 3px;
+}
+:is(.is-catalog, .is-collection) .product-art > img {
+  width: 92%; height: 92%; filter: drop-shadow(0 14px 12px #20201e20);
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+:is(.is-catalog, .is-collection) .product-card:hover .product-art > img { transform: translateY(-5px) scale(1.025); }
+:is(.is-catalog, .is-collection) .product-meta { padding-top: 16px; }
+:is(.is-catalog, .is-collection) .product-open { background: #20201e; color: #FAF9F6; border: 0; }
+:is(.is-catalog, .is-collection) :is(button, a, input, select):focus-visible { outline: 2px solid #20201e; outline-offset: 4px; }
+.laundry-page { background: transparent; }
+.laundry-page .laundry-intro {
+  /* Equal side columns keep the tee centred under the logo. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 1fr);
+  column-gap: 26px; padding: 80px clamp(24px, 4vw, 72px) 90px;
+  background: transparent; border: 0; min-height: 610px;
+  /* The orbit rings reach past the box: never cut them off top or bottom (sideways stays clipped, so no page scroll). */
+  overflow-x: clip; overflow-y: visible;
+}
+/* The rings are sized from this box; capping it keeps them from growing taller than the hero on wide screens. */
+.laundry-page .laundry-stage .orbital-track { left: 50%; right: auto; width: min(100%, 640px); transform: translateX(-50%); }
+.laundry-page .orbital-track .orbit-plane {
+  left: var(--orbit-x); top: var(--orbit-y);
+  border-color: color-mix(in srgb, var(--orbit-ink) 38%, transparent);
+  border-style: var(--orbit-stroke);
+}
+.laundry-page .orbit-plane::before, .laundry-page .orbit-plane::after {
+  background: radial-gradient(circle at 30% 25%, #faf9f6, var(--orbit-ink) 70%);
+}
+.laundry-page .orbit-dense .orbit-plane {
+  border-color: color-mix(in srgb, var(--orbit-ink) 12%, transparent);
+}
+.laundry-page .orbit-dense .orbit-plane:not(:nth-child(24n + 1))::before,
+.laundry-page .orbit-dense .orbit-plane::after { content: none; }
+/* Give each ring in these two collections one clear satellite, including dense tracks. */
+.laundry-page:is([data-theme="custom"], [data-theme="pink-panther"]) .orbital-track .orbit-plane::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+}
+.laundry-page:is([data-theme="custom"], [data-theme="pink-panther"]) .orbital-track .orbit-plane::after { content: none; }
+.laundry-page .laundry-copy { padding: 0; }
+.laundry-page .laundry-copy h1 {
+  font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;
+  font-size: clamp(42px, 4vw, 64px); letter-spacing: -.035em; line-height: 1.03;
+}
+.laundry-page .laundry-copy .section-kicker { color: #686863; font-size: 11px; letter-spacing: .08em; }
+.laundry-page .laundry-copy > p:not(.section-kicker) { color: #686863; font-size: 13px; line-height: 1.75; }
+.laundry-page .laundry-stage { height: 460px; min-width: 0; }
+.laundry-page .category-garment { z-index: 2; }
+.laundry-page .category-garment img { filter: drop-shadow(0 18px 15px #25251e20); }
+.laundry-page .floor-shadow { display: none; }
+.laundry-page .category-feature-info { padding: 0; margin: 0; grid-column: auto; text-align: left; }
+.laundry-page .category-feature-info h2 { display: block; font-size: clamp(25px, 2.5vw, 38px); margin: 12px 0; }
+.laundry-page .category-feature-info p { display: block; color: #686863; }
+.laundry-page .featured-mark { display: block; color: #686863; font-size: 11px; }
+.laundry-page .primary-link {
+  width: auto; min-height: 44px; padding: 12px 18px; gap: 24px;
+  border: 1px solid #20201e; border-radius: 4px; background: #20201e; color: #FAF9F6;
+  transition: background .25s, border-color .25s;
+}
+.laundry-page .primary-link:hover { background: #3b3b36; border-color: #3b3b36; }
+.laundry-page .laundry-shop { padding: 20px clamp(24px, 4vw, 72px) 80px; }
+@media (max-width: 900px) {
+  .laundry-page .laundry-intro { grid-template-columns: 1fr 1.2fr; gap: 20px; }
+  .laundry-page .category-feature-info { grid-column: 2; }
+  .laundry-page .laundry-stage { height: 380px; }
+}
+@media (max-width: 650px) {
+  .is-catalog .route-page { padding: 24px 22px 48px; }
+  .is-catalog .all-title { font-size: 44px; margin: 24px 0 28px; }
+  :is(.is-catalog, .is-collection) .collection-filter-links { gap: 6px; }
+  :is(.is-catalog, .is-collection) .collection-filter-links button { font-size: 11px; padding: 10px 12px; }
+  :is(.is-catalog, .is-collection) .product-grid { gap: 28px 12px; }
+  .laundry-page .laundry-intro { display: flex; padding: 66px 22px 26px; gap: 0; min-height: 0; }
+  .laundry-page .laundry-stage .orbital-track { width: 100%; }
+  .laundry-page .laundry-copy h1 { font-size: 46px; max-width: none; }
+  .laundry-page .laundry-stage { height: 330px; width: 100%; margin: 12px 0; }
+  .laundry-page .category-feature-info { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; }
+  .laundry-page .category-feature-info .featured-mark { grid-column: 1; }
+  .laundry-page .category-feature-info h2 { grid-column: 1; margin: 0; font-size: 26px; }
+  .laundry-page .category-feature-info p { grid-column: 1; margin: 0; font-size: 11px; }
+  .laundry-page .category-feature-info .primary-link { grid-column: 2; grid-row: 1 / 4; align-self: center; gap: 12px; padding: 12px; }
+  .laundry-page .laundry-shop { padding: 16px 22px 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.is-collection, :is(.is-catalog, .is-collection) * { transition: none !important; }
+}
+
+/* One shop page: the same search box and Laundry chips on top of All tees and of every Laundry. */
+.laundry-page .shop-top { padding: 46px clamp(24px, 4vw, 72px) 0; }
+.laundry-page .shop-top .collection-filter-links { margin-bottom: 0; }
+.laundry-page .laundry-intro { padding-top: 56px; }
+@media (max-width: 650px) {
+  .laundry-page .shop-top { padding: 24px 22px 0; }
+  .laundry-page .laundry-intro { padding-top: 40px; }
+  /* Chips stay on one line and scroll sideways, so the Laundry's hero isn't pushed down. */
+  :is(.is-catalog, .is-collection) .shop-top .collection-filter-links {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: -22px; margin-right: -22px; padding: 0 22px 2px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 24px), transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 24px), transparent);
+  }
+  :is(.is-catalog, .is-collection) .shop-top .collection-filter-links::-webkit-scrollbar { display: none; }
+  :is(.is-catalog, .is-collection) .shop-top .collection-filter-links button { flex: 0 0 auto; white-space: nowrap; }
+}
+
+/* Custom Laundry: show both garment colors directly on the collection page. */
+.custom-color-picker { display: flex; gap: 8px; margin: 18px 0; }
+.custom-color-picker button { min-width: 72px; min-height: 44px; padding: 10px 16px; border: 1px solid #20201e40; border-radius: 4px; background: transparent; color: #20201e; font: inherit; font-size: 12px; cursor: pointer; }
+.custom-color-picker button[aria-pressed="true"] { background: #20201e; border-color: #20201e; color: #faf9f6; }
+.custom-color-picker button:focus-visible { outline: 2px solid #20201e; outline-offset: 3px; }
+/* Custom Laundry: price, a short instruction, and "Upload your design" (opens the tee window). */
+.laundry-page .category-feature-info .feature-price { margin: 0 0 10px; font-size: 19px; font-weight: 500; color: #20201e; }
+.laundry-page .primary-link.upload-design { gap: 12px; margin-top: 8px; }
+.laundry-page .primary-link.upload-design .upload-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+
+/* Custom tee window: upload box with preview, status and instructions. */
+.cl-design-drop {
+  position: relative; display: flex; align-items: center; justify-content: center; min-height: 132px; padding: 14px;
+  border: 1px dashed #20201e40; border-radius: 6px; background: #20201e05; cursor: pointer; text-align: center;
+  transition: border-color .2s, background .2s;
+}
+.cl-design-drop:hover, .cl-design-drop.is-dragging { border-color: #20201e; background: #20201e0a; }
+.cl-design-drop:focus-within { outline: 2px solid #20201e; outline-offset: 2px; }
+.cl-design-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.cl-design-empty { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; color: #20201e; pointer-events: none; }
+.cl-design-empty svg { width: 26px; height: 26px; }
+.cl-design-empty > span { font-size: 11px; color: #686863; }
+.cl-design-preview { max-height: 160px; max-width: 100%; object-fit: contain; pointer-events: none;
+  background: repeating-conic-gradient(#eceae4 0 25%, #f8f7f3 0 50%) 0 0 / 14px 14px; border-radius: 4px; }
+.cl-design-rule { margin: 8px 0 0; padding: 8px 10px; border-left: 2px solid #20201e; background: #20201e08; font-size: 12px; line-height: 1.5; color: #20201e; }
+.cl-design-status { margin: 8px 0 0; font-size: 12px; color: #686863; min-height: 1em; }
+.cl-design-note { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; font-size: 12px; color: #20201e; }
+.cl-design-note em { font-style: normal; color: #8b8b85; }
+.cl-design-note textarea { width: 100%; min-height: 72px; padding: 10px 12px; border: 1px solid #20201e30; border-radius: 4px; background: #fff; font: inherit; font-size: 13px; resize: vertical; }
+.cl-design-note textarea:focus { outline: none; border-color: #20201e; }
+.cl-bag-design { display: flex; align-items: center; gap: 8px; margin: 4px 0 6px; font-size: 12px; color: #686863; }
+.cl-bag-design img { width: 40px; height: 40px; object-fit: contain; border-radius: 3px; background: #eceae4; }
+.cl-bag-design strong { color: #20201e; font-weight: 500; }

@@ -1,7 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "installCommand": "",
-  "buildCommand": "",
-  "outputDirectory": "cosmic-laundry/dist"
+  "crons": [{ "path": "/api/cron/clean-designs", "schedule": "0 3 * * *" }]
 }

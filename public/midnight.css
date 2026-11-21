@@ -1,0 +1,308 @@
+/* Monochrome studio: white page, black type, soft grey light on the garments. */
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --studio: #f0f0f0;
+  --ink: #000000;
+  --muted: #484848;
+  --line: #c6c6c6;
+  --navy: #383838;
+  --cl-ink: var(--ink);
+  --cl-paper: var(--paper);
+  --cl-muted: var(--muted);
+  --cl-border: var(--line);
+  font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  background: var(--paper);
+}
+body { background: var(--paper); }
+::selection { background: #191919; color: #ffffff; }
+button, a { -webkit-tap-highlight-color: #4a4a4a20; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline-color: #2c2c2c;
+}
+.preview-note {
+  background: #ffffff;
+  color: #535353;
+  border-bottom: 1px solid #cdcdcd;
+  font-size: 10px;
+}
+.preview-dot, .studio-label span { background: #202020; }
+.site-header {
+  height: 88px;
+  background: #ffffff;
+  border-bottom-color: var(--line);
+}
+.brand img { width: 50px; height: 60px; }
+.brand-wordmark { font-size: 17px; font-weight: 500; letter-spacing: -.055em; }
+.site-header nav { color: #323232; }
+.site-header nav a {
+  position: relative;
+  text-decoration: none;
+  transition: color .2s;
+}
+.site-header nav a::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 8px;
+  height: 1px;
+  background: #191919;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.site-header nav a:hover, .site-header nav a[aria-current] { color: #000000; text-decoration: none; }
+.site-header nav a:hover::after, .site-header nav a[aria-current]::after { transform: scaleX(1); }
+.bag-count { background: #e8e8e8; color: #212121; }
+.skip-link, .noscript { background: #efefef; color: #000000; }
+
+.hero {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  min-height: 748px;
+}
+.hero::before {
+  opacity: 1;
+  background: radial-gradient(ellipse at 53% 40%, #eeeeee 0%, transparent 56%), #ffffff;
+}
+.hero h1 { font-size: clamp(35px,3.35vw,52px); letter-spacing: -.065em; }
+.hero-intro > p:not(.studio-label) { color: #474747; }
+.studio-label { color: #373737; }
+.hero-main-image, .category-garment img {
+  filter: drop-shadow(0 22px 22px #08080875) drop-shadow(0 0 2px #14141447);
+}
+.hero-studio { height: 520px; }
+.orbital-track { border-color: #3f3f3f38; }
+.orbital-track::after { background: #141414; box-shadow: 0 0 16px #1414148c; }
+.floor-shadow { background: #060606a8; height: 20px; filter: blur(15px); }
+.hero-step { background: #efefefcc; border-color: #74747460; color: #000000; }
+.hero-step:hover { background: #e3e3e3; color: #000000; border-color: #5a5a5a; }
+.inspect-hint { color: #3c3c3c; }
+.inspect-hint span { color: #000000; background: #e7e7e7; }
+.primary-link {
+  background: #191919;
+  color: #ffffff;
+  border: 1px solid #29292940;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background .2s, box-shadow .2s;
+}
+.primary-link:hover { background: #0e0e0e; box-shadow: 0 6px 24px #0b0b0b30; }
+.text-link { text-decoration-color: #7c7c7c; }
+.feature-info h2 { text-wrap: balance; }
+.feature-price { color: #525252; }
+.hero-controls { border-top-color: #8686863b; }
+.hero-collections button { color: #404040; border-radius: 4px 4px 0 0; }
+.hero-collections button[aria-pressed=true] { border-bottom-color: #343434; color: #000000; background: #1e1e1e1a; }
+.hero-collections button:hover { background: #1e1e1e14; }
+
+.collection-section { background: #ffffff; }
+.section-heading h2 { font-weight: 400; letter-spacing: -.055em; }
+.collection-visual, .product-art {
+  background: radial-gradient(ellipse at 50% 36%, #dfdfdf 0%, #ebebeb 48%, #f2f2f2 100%);
+  border: 1px solid #adadad66;
+  border-radius: 7px;
+  perspective: 900px;
+}
+.collection-visual {
+  background: radial-gradient(ellipse at 50% 35%, #d0d0d042, transparent 68%), #eeeeee;
+}
+.collection-visual::before { background: #09090975; }
+.collection-visual > img, .product-art > img {
+  filter: drop-shadow(0 16px 13px #08080880) drop-shadow(0 0 1px #14141445);
+  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+}
+.collection-card:hover .collection-visual > img,
+.collection-card:focus-visible .collection-visual > img {
+  transform: translateY(-10px) rotateY(-12deg) rotateZ(-3deg) scale(1.035);
+}
+.product-card:hover .product-art > img,
+.product-card:focus-visible .product-art > img {
+  transform: translateY(-9px) rotateY(10deg) rotateZ(2deg) scale(1.035);
+}
+.card-open, .product-open {
+  background: #f3f3f3e6;
+  color: #000000;
+  border: 1px solid #62626266;
+}
+.collection-card-info h3 { color: #000000; }
+.missing-art > span:last-child { color: #474747; }
+.missing-orbit, .missing-orbit::after { border-color: #3b3b3b38; }
+.editorial {
+  background: radial-gradient(ellipse at 30% 50%, #e3e3e366, transparent 55%), #f1f1f1;
+  border-block: 1px solid #c0c0c0;
+}
+.editorial-copy > p:not(.section-kicker) { color: #3f3f3f; }
+.editorial-visual img { filter: drop-shadow(0 22px 18px #07070775); }
+
+.laundry-page { background: #ffffff; }
+.laundry-intro {
+  min-height: 590px;
+  background: radial-gradient(ellipse at 57% 45%, #3030303d, transparent 57%), #f0f0f0;
+  border-block: 1px solid #b2b2b275;
+  overflow: hidden;
+}
+.laundry-copy { position: relative; }
+.laundry-copy h1 { text-wrap: balance; }
+.laundry-page[data-theme=mona] .laundry-copy h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(46px,4.8vw,72px);
+  letter-spacing: -.045em;
+}
+.laundry-copy > p:not(.section-kicker) { color: #3a3a3a; }
+.laundry-stage { height: 500px; }
+.theme-environment { opacity: .28; }
+.laundry-page[data-theme=mona] .theme-environment { border-color: #4a4a4a; outline-color: #4a4a4a; }
+.laundry-page[data-theme=family] .theme-environment { border-color: #414141; background: #3131310a; }
+.laundry-page[data-theme=rick] .theme-environment { border-color: #3b3b3b; }
+.laundry-page[data-theme=sponge] .theme-environment { border-color: #353535; }
+.laundry-page[data-theme=popeye] .theme-environment { border-color: #4b4b4b; }
+.laundry-page[data-theme=bad] .theme-environment { border-color: #404040; }
+.category-thumbnails { gap: 10px; }
+.category-thumbnails button {
+  background: #ffffffb3;
+  border: 1px solid #6969693d;
+  border-bottom: 2px solid #6969693d;
+  border-radius: 5px;
+  min-height: 110px;
+  width: 82px;
+  color: #383838;
+  transition: background .2s, border-color .2s;
+}
+.category-thumbnails button[aria-pressed=true] {
+  border-color: #3c3c3c;
+  background: #18181820;
+  color: #000000;
+}
+.category-thumbnails button:hover { background: #18181818; }
+.category-feature-info h2 { font-size: clamp(25px,2.4vw,35px); }
+.laundry-shop { padding-top: 30px; }
+.product-art { background-color: #ececec; }
+.product-meta h2 { color: #000000; }
+.product-meta p { color: #585858; }
+.other-laundries a:hover { color: #252525; }
+.other-laundries .arrow-icon { opacity: .55; }
+
+.shop-search input, .sort-field select { color: #000000; background: #f2f2f2; border-color: #b1b1b1; }
+.shop-search input::placeholder { color: #5f5f5f; }
+.collection-filter-links button { background: #efefef; color: #353535; }
+.collection-filter-links button[aria-pressed=true] { background: #171717; color: #ffffff; }
+.empty-results { background: #f1f1f1; }
+.empty-results button { background: #e8e8e8; }
+.about-art { background: radial-gradient(ellipse, #e2e2e2, #f2f2f2); border-radius: 8px; }
+.site-footer { background: #ffffff; border-top: 1px solid #c9c9c9; }
+.footer-brand img { width: 65px; height: 72px; }
+.footer-bottom { border-top-color: #c8c8c8; }
+.footer-bottom button:hover, .footer-bottom a:hover { color: #212121; }
+.info-dialog { background: #f1f1f1; border: 1px solid #adadad; }
+.info-dialog::backdrop { background: #090909b3; }
+
+/* Product inspection, preference controls and preview bag share the studio palette. */
+.cl-dialog {
+  --cl-ink: #000000;
+  --cl-muted: #424242;
+  --cl-border: #b0b0b0;
+  --cl-paper: #ffffff;
+  --cl-stage: #ececec;
+  --cl-accent: #303030;
+  border: 1px solid #acacac;
+  box-shadow: 0 24px 100px #00000099;
+}
+.cl-dialog::backdrop { background: #090909ba; }
+.cl-product-stage { background: radial-gradient(ellipse at 50% 35%, #dcdcdc, #ececec 58%, #f2f2f2); }
+.cl-product-picture { filter: drop-shadow(0 15px 18px #08080880); }
+.cl-icon-button:hover { background: #1717171a; }
+.cl-product-close { background: #f2f2f2e6; }
+.cl-view-controls { background: #ffffffd9; border-color: #00000022; }
+.cl-view-controls button[aria-pressed=true] { color: #ffffff; background: #151515; }
+.cl-zoom-label { background: #f3f3f3e8; color: #000000; border-color: #5b5b5b50; }
+.cl-image-status { background: #efefeff2; }
+.cl-image-status button { background: #e5e5e5; }
+.cl-color-option input:checked + span, .cl-size-option input:checked + span { color: #ffffff; background: #151515; border-color: #2e2e2e; }
+.cl-button-primary { background: #171717; color: #ffffff; }
+.cl-button-primary:hover { background: #0c0c0c; }
+.cl-button-secondary { background: #ececec; color: #000000; }
+.cl-button-secondary:hover { background: #e3e3e3; }
+.cl-button-unavailable { background: #efefef; }
+.cl-form-error { color: #a02b2b; }
+.cl-stepper button:disabled { color: #848484; }
+.cl-product-close:focus-visible { outline-color: #212121; }
+
+@media(max-width:1150px) {
+  .hero { min-height: 720px; }
+  .hero-studio { height: 470px; }
+  .laundry-stage { height: 440px; }
+  .laundry-intro { min-height: 560px; }
+}
+@media(max-width:850px) {
+  .hero { min-height: 660px; }
+  .hero-studio { height: 400px; }
+  .laundry-stage { height: 420px; }
+  .category-feature-info h2 { font-size: 24px; }
+}
+@media(max-width:650px) {
+  .site-header { height: 78px; }
+  .brand { gap: 7px; }
+  .brand img { width: 38px; height: 47px; }
+  .brand-wordmark { display: block; font-size: 12px; }
+  .site-header nav { gap: 16px; font-size: 11px; }
+  .bag-button { min-width: 50px; gap: 5px; }
+  .bag-button > span:first-child { display: none; }
+  .hero { min-height: 0; padding-top: 0; }
+  .hero-intro { flex-wrap: wrap; gap: 12px; }
+  .hero-intro .studio-label { font-size: 10px; }
+  .hero-studio { height: 390px; margin-top: 10px; }
+  .hero-step { background: #f0f0f0cc; }
+  .hero-controls { margin-top: 22px; }
+  .hero-collections { scrollbar-color: #7e7e7e transparent; }
+  .hero-collections button { font-size: 11px; }
+  .feature-info { padding-top: 20px; }
+  .laundry-intro { min-height: 0; padding-top: 28px; padding-bottom: 30px; }
+  .laundry-page[data-theme=mona] .laundry-copy h1 { font-size: 48px; max-width: 330px; }
+  .laundry-copy > p:not(.section-kicker) { font-size: 13px; }
+  .laundry-stage { height: 385px; margin-top: 12px; }
+  .category-feature-info { margin-top: 20px; }
+  .category-thumbnails button { width: 78px; min-height: 103px; font-size: 11px; }
+  .category-feature-info h2 { font-size: 26px; }
+  .laundry-shop { padding-top: 8px; }
+  .collection-visual, .product-art { border-radius: 5px; }
+  .footer-brand img { width: 50px; height: 60px; }
+  .footer-brand .brand-wordmark { font-size: 15px; }
+  .footer-top p { font-size: 19px; }
+  .footer-bottom { flex-wrap: wrap; gap: 6px 16px; }
+  .footer-bottom nav { order: 3; width: 100%; }
+}
+@media(max-width:370px) {
+  .site-header nav { gap: 12px; }
+  .brand-wordmark { font-size: 11px; }
+  .brand img { width: 32px; }
+  .hero-studio { height: 350px; }
+  .laundry-stage { height: 345px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .collection-card:hover .collection-visual > img,
+  .collection-card:focus-visible .collection-visual > img,
+  .product-card:hover .product-art > img,
+  .product-card:focus-visible .product-art > img { transform: none; }
+}
+[data-motion-paused] .collection-visual > img,
+[data-motion-paused] .product-art > img { transform: none !important; }
+
+/* Keep the 360 viewer and original photo inspection in the same product dialog. */
+.cl-product-stage { display: flex; flex-direction: column; justify-content: center; padding: 28px 22px 22px; }
+.product-showroom-stage { position: relative; isolation: isolate; width: 100%; height: 460px; flex: 0 0 auto; margin-bottom: 66px; }
+.product-showroom-garment { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; background: none; }
+.product-showroom-garment [data-depth-layer], .product-showroom-garment img { width: 100%; height: 100%; object-fit: contain; }
+.cl-photo-panel { position: relative; width: 100%; min-height: 490px; }
+.cl-photo-panel .cl-product-zoom { height: 420px; }
+.cl-inspection-modes { flex: 0 0 auto; margin-top: 10px; }
+.cl-model-note { color: var(--cl-muted); text-align: center; font-size: 11px; line-height: 1.6; max-width: 33ch; padding-top: 12px; }
+.product-3d-label { position: absolute; left: 18px; bottom: 18px; color: #303030; font-size: 10px; letter-spacing: .06em; }
+@media(max-width:800px) {
+  .cl-product-stage { height: auto; min-height: 440px; padding: 18px 20px 20px; }
+  .product-showroom-stage { height: 300px; margin-bottom: 63px; }
+  .cl-photo-panel { min-height: 365px; }
+  .cl-photo-panel .cl-product-zoom { height: 285px; }
+}
+
+/* Black and white: each Laundry's accent colour (from the catalog) is neutralised to grey. */
+.hero, .collection-card, .laundry-page { --accent: #6b6b6b !important; }

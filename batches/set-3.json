@@ -1,0 +1,580 @@
+{
+  "batch": "set-3",
+  "source": "new set 3.zip",
+  "price": {
+    "LK": 3500
+  },
+  "collections": [
+    {
+      "id": "attack-on-titan",
+      "name": "Attack on Titan Laundry",
+      "short": "Attack on Titan",
+      "tagline": "Beyond the walls.",
+      "description": "Levi, Eren, Mikasa, Armin and the Titans themselves. Ten designs from inside, and outside, the walls.",
+      "featured": "no-regrets",
+      "tint": "#152a44",
+      "accent": "#d8c7a6",
+      "theme": "aot",
+      "products": [
+        {
+          "id": "no-regrets",
+          "name": "No Regrets",
+          "character": "Levi",
+          "description": "The No Regrets design, with Levi, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Levi-No-Regrets-Black.png",
+            "white": "Anime/Attack on Titan/Levi-No-Regrets-White.png"
+          }
+        },
+        {
+          "id": "keep-moving",
+          "name": "Keep Moving",
+          "character": "Eren",
+          "description": "The Keep Moving design, with Eren, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Eren-Keep-Moving-Black.png",
+            "white": "Anime/Attack on Titan/Eren-Keep-Moving-White.png"
+          }
+        },
+        {
+          "id": "i-remember",
+          "name": "I Remember",
+          "character": "Mikasa",
+          "description": "The I Remember design, with Mikasa, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Mikasa-I-Remember-Black.png",
+            "white": "Anime/Attack on Titan/Mikasa-I-Remember-White.png"
+          }
+        },
+        {
+          "id": "so-this-is-the-sea",
+          "name": "So This Is the Sea",
+          "character": "Armin",
+          "description": "The So This Is the Sea design, with Armin, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Armin-So-This-Is-The-Sea-Black.png",
+            "white": "Anime/Attack on Titan/Armin-So-This-Is-The-Sea-White.png"
+          }
+        },
+        {
+          "id": "dedicate-your-heart",
+          "name": "Dedicate Your Heart",
+          "character": "Erwin",
+          "description": "The Dedicate Your Heart design, with Erwin, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Erwin-Dedicate-Your-Heart-Black.png",
+            "white": "Anime/Attack on Titan/Erwin-Dedicate-Your-Heart-White.png"
+          }
+        },
+        {
+          "id": "field-notes",
+          "name": "Field Notes",
+          "character": "Hange",
+          "description": "The Field Notes design, with Hange, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Hange-Field-Notes-Black.png",
+            "white": "Anime/Attack on Titan/Hange-Field-Notes-White.png"
+          }
+        },
+        {
+          "id": "that-day",
+          "name": "That Day",
+          "character": "the Colossal Titan",
+          "description": "The That Day design, with the Colossal Titan, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Colossal-Titan-That-Day-Black.png",
+            "white": "Anime/Attack on Titan/Colossal-Titan-That-Day-White.png"
+          }
+        },
+        {
+          "id": "breach",
+          "name": "Breach",
+          "character": "the Armored Titan",
+          "description": "The Breach design, with the Armored Titan, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Armored-Titan-Breach-Black.png",
+            "white": "Anime/Attack on Titan/Armored-Titan-Breach-White.png"
+          }
+        },
+        {
+          "id": "harden",
+          "name": "Harden",
+          "character": "the Female Titan",
+          "description": "The Harden design, with the Female Titan, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Female-Titan-Harden-Black.png",
+            "white": "Anime/Attack on Titan/Female-Titan-Harden-White.png"
+          }
+        },
+        {
+          "id": "dead-silence",
+          "name": "Dead Silence",
+          "character": "the Beast Titan",
+          "description": "The Dead Silence design, with the Beast Titan, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Attack on Titan/Beast-Titan-Dead-Silence-Black.png",
+            "white": "Anime/Attack on Titan/Beast-Titan-Dead-Silence-White.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bleach",
+      "name": "Bleach Laundry",
+      "short": "Bleach",
+      "tagline": "Draw your blade.",
+      "description": "Ichigo, Aizen, Byakuya, Kenpachi and the rest of the Soul Society. Ten designs with something to prove.",
+      "featured": "you-saw-what-i-allowed",
+      "tint": "#1a2848",
+      "accent": "#f0b08e",
+      "theme": "bleach",
+      "products": [
+        {
+          "id": "you-saw-what-i-allowed",
+          "name": "You Saw What I Allowed",
+          "character": "Aizen",
+          "description": "The You Saw What I Allowed design, with Aizen, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Aizen-black.png",
+            "white": "Anime/Bleach/Aizen-white.png"
+          }
+        },
+        {
+          "id": "the-blade-is-me",
+          "name": "The Blade Is Me",
+          "character": "Ichigo",
+          "description": "The Blade Is Me design, with Ichigo, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Ichigo-black.png",
+            "white": "Anime/Bleach/Ichigo-white.png"
+          }
+        },
+        {
+          "id": "scatter-senbonzakura",
+          "name": "Scatter, Senbonzakura",
+          "character": "Byakuya",
+          "description": "The Scatter, Senbonzakura design, with Byakuya, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Byakuya-black.png",
+            "white": "Anime/Bleach/Byakuya-white.png"
+          }
+        },
+        {
+          "id": "try-to-cut-me",
+          "name": "Try to Cut Me",
+          "character": "Kenpachi",
+          "description": "The Try to Cut Me design, with Kenpachi, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Kenpachi-black.png",
+            "white": "Anime/Bleach/Kenpachi-white.png"
+          }
+        },
+        {
+          "id": "grind-pantera",
+          "name": "Grind, Pantera",
+          "character": "Grimmjow",
+          "description": "The Grind, Pantera design, with Grimmjow, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Grimmjow-black.png",
+            "white": "Anime/Bleach/Grimmjow-white.png"
+          }
+        },
+        {
+          "id": "what-is-a-heart",
+          "name": "What Is a Heart?",
+          "character": "Ulquiorra",
+          "description": "The What Is a Heart? design, with Ulquiorra, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Ulquiorra-black.png",
+            "white": "Anime/Bleach/Ulquiorra-white.png"
+          }
+        },
+        {
+          "id": "dance-sode-no-shirayuki",
+          "name": "Dance, Sode no Shirayuki",
+          "character": "Rukia",
+          "description": "The Dance, Sode no Shirayuki design, with Rukia, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Rukia-black.png",
+            "white": "Anime/Bleach/Rukia-white.png"
+          }
+        },
+        {
+          "id": "frozen-heavens",
+          "name": "Frozen Heavens",
+          "character": "Toshiro",
+          "description": "The Frozen Heavens design, with Toshiro, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Toshiro-black.png",
+            "white": "Anime/Bleach/Toshiro-white.png"
+          }
+        },
+        {
+          "id": "just-a-humble-shopkeeper",
+          "name": "Just a Humble Shopkeeper",
+          "character": "Urahara",
+          "description": "The Just a Humble Shopkeeper design, with Urahara, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Urahara-black.png",
+            "white": "Anime/Bleach/Urahara-white.png"
+          }
+        },
+        {
+          "id": "blink-and-im-gone",
+          "name": "Blink and I’m Gone",
+          "character": "Yoruichi",
+          "description": "The Blink and I’m Gone design, with Yoruichi, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Bleach/Yoruichi-black.png",
+            "white": "Anime/Bleach/Yoruichi-white.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "demon-slayer",
+      "name": "Demon Slayer Laundry",
+      "short": "Demon Slayer",
+      "tagline": "Set your heart ablaze.",
+      "description": "Tanjiro, Nezuko, the Hashira and the demons they hunt. Ten breathing styles on oversized tees.",
+      "featured": "set-your-heart-ablaze",
+      "tint": "#1f2546",
+      "accent": "#f3a37c",
+      "theme": "demon",
+      "products": [
+        {
+          "id": "set-your-heart-ablaze",
+          "name": "Set Your Heart Ablaze",
+          "character": "Rengoku",
+          "description": "The Set Your Heart Ablaze design, with Rengoku, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/05-Rengoku-Black.png",
+            "white": "Anime/Demon Slayer/individual/05-Rengoku-White.png"
+          }
+        },
+        {
+          "id": "hinokami-kagura",
+          "name": "Hinokami Kagura",
+          "character": "Tanjiro",
+          "description": "The Hinokami Kagura design, with Tanjiro, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/01-Tanjiro-Black.png",
+            "white": "Anime/Demon Slayer/individual/01-Tanjiro-White.png"
+          }
+        },
+        {
+          "id": "exploding-blood",
+          "name": "Exploding Blood",
+          "character": "Nezuko",
+          "description": "The Exploding Blood design, with Nezuko, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/02-Nezuko-Black.png",
+            "white": "Anime/Demon Slayer/individual/02-Nezuko-White.png"
+          }
+        },
+        {
+          "id": "thunderclap-and-flash",
+          "name": "Thunderclap and Flash",
+          "character": "Zenitsu",
+          "description": "The Thunderclap and Flash design, with Zenitsu, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/03-Zenitsu-Black.png",
+            "white": "Anime/Demon Slayer/individual/03-Zenitsu-White.png"
+          }
+        },
+        {
+          "id": "beast-breathing",
+          "name": "Beast Breathing",
+          "character": "Inosuke",
+          "description": "The Beast Breathing design, with Inosuke, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/04-Inosuke-Black.png",
+            "white": "Anime/Demon Slayer/individual/04-Inosuke-White.png"
+          }
+        },
+        {
+          "id": "dead-calm",
+          "name": "Dead Calm",
+          "character": "Giyu",
+          "description": "The Dead Calm design, with Giyu, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/06-Giyu-Black.png",
+            "white": "Anime/Demon Slayer/individual/06-Giyu-White.png"
+          }
+        },
+        {
+          "id": "butterfly-dance",
+          "name": "Butterfly Dance",
+          "character": "Shinobu",
+          "description": "The Butterfly Dance design, with Shinobu, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/07-Shinobu-Black.png",
+            "white": "Anime/Demon Slayer/individual/07-Shinobu-White.png"
+          }
+        },
+        {
+          "id": "make-some-noise",
+          "name": "Make Some Noise",
+          "character": "Tengen",
+          "description": "The Make Some Noise design, with Tengen, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/08-Tengen-Black.png",
+            "white": "Anime/Demon Slayer/individual/08-Tengen-White.png"
+          }
+        },
+        {
+          "id": "compass-needle",
+          "name": "Compass Needle",
+          "character": "Akaza",
+          "description": "The Compass Needle design, with Akaza, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/09-Akaza-Black.png",
+            "white": "Anime/Demon Slayer/individual/09-Akaza-White.png"
+          }
+        },
+        {
+          "id": "moon-breathing",
+          "name": "Moon Breathing",
+          "character": "Kokushibo",
+          "description": "The Moon Breathing design, with Kokushibo, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Demon Slayer/individual/10-Kokushibo-Black.png",
+            "white": "Anime/Demon Slayer/individual/10-Kokushibo-White.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "naruto",
+      "name": "Naruto Laundry",
+      "short": "Naruto",
+      "tagline": "Believe it.",
+      "description": "Naruto, Kakashi, Itachi, Minato and Shisui. Six designs straight out of the Hidden Leaf.",
+      "featured": "believe-it",
+      "tint": "#16304a",
+      "accent": "#f4b46c",
+      "theme": "naruto",
+      "products": [
+        {
+          "id": "believe-it",
+          "name": "Believe It",
+          "character": "Naruto",
+          "description": "The Believe It design, with Naruto, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Naruto/naruto-black-front.png",
+            "white": "Anime/Naruto/naruto-white-front.png"
+          }
+        },
+        {
+          "id": "uchiha-itachi",
+          "name": "Uchiha Itachi",
+          "character": "Itachi",
+          "description": "Itachi Uchiha and his genjutsu, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Naruto/itachi-black-front.png",
+            "white": "Anime/Naruto/itachi-white-front.png"
+          }
+        },
+        {
+          "id": "kakashi-lightning-in-hand",
+          "name": "Kakashi, Lightning in Hand",
+          "character": "Kakashi",
+          "description": "Kakashi with lightning crackling in his hand, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Naruto/kakashi-portrait-black.png",
+            "white": "Anime/Naruto/kakashi-portrait-white.png"
+          }
+        },
+        {
+          "id": "kakashi-crouched",
+          "name": "Kakashi, Crouched",
+          "character": "Kakashi",
+          "description": "Kakashi crouched low in a burst of lightning, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Naruto/kakashi-crouching-black.png",
+            "white": "Anime/Naruto/kakashi-crouching-white.png"
+          }
+        },
+        {
+          "id": "minato-namikaze",
+          "name": "Minato Namikaze",
+          "character": "Minato",
+          "description": "Minato, Rasengan in hand and kunai ready, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Naruto/minato-black.png",
+            "white": "Anime/Naruto/minato-white.png"
+          }
+        },
+        {
+          "id": "shisui-uchiha",
+          "name": "Shisui Uchiha",
+          "character": "Shisui",
+          "description": "Shisui Uchiha among his crows, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/Naruto/shisui-black.png",
+            "white": "Anime/Naruto/shisui-white.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "one-punch-man",
+      "name": "One Punch Man Laundry",
+      "short": "One Punch Man",
+      "tagline": "One punch is enough.",
+      "description": "Saitama, Genos, Tatsumaki, King, Garou and Mumen Rider. Ten designs, zero effort required.",
+      "featured": "hold-still",
+      "tint": "#14304a",
+      "accent": "#f2d36e",
+      "theme": "opm",
+      "products": [
+        {
+          "id": "hold-still",
+          "name": "Hold Still",
+          "character": "Saitama",
+          "description": "The Hold Still design, with Saitama, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/01-Saitama-Hold-Still-Black.png",
+            "white": "Anime/One Punch Man/01-Saitama-Hold-Still-White.png"
+          }
+        },
+        {
+          "id": "that-was-it",
+          "name": "That Was It",
+          "character": "Saitama",
+          "description": "The That Was It design, with Saitama, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/05-Saitama-That-Was-It-Black.png",
+            "white": "Anime/One Punch Man/05-Saitama-That-Was-It-White.png"
+          }
+        },
+        {
+          "id": "serious-series",
+          "name": "Serious Series",
+          "character": "Saitama",
+          "description": "The Serious Series design, with Saitama, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/06-Saitama-Serious-Series-Black.png",
+            "white": "Anime/One Punch Man/06-Saitama-Serious-Series-White.png"
+          }
+        },
+        {
+          "id": "hero-work-can-wait",
+          "name": "Hero Work Can Wait",
+          "character": "Saitama",
+          "description": "The Hero Work Can Wait design, with Saitama, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/07-Saitama-Hero-Work-Can-Wait-Black.png",
+            "white": "Anime/One Punch Man/07-Saitama-Hero-Work-Can-Wait-White.png"
+          }
+        },
+        {
+          "id": "write-that-down",
+          "name": "Write That Down",
+          "character": "Saitama and Genos",
+          "description": "The Write That Down design, with Saitama and Genos, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/09-Saitama-and-Genos-Write-That-Down-Black.png",
+            "white": "Anime/One Punch Man/09-Saitama-and-Genos-Write-That-Down-White.png"
+          }
+        },
+        {
+          "id": "incinerate",
+          "name": "Incinerate",
+          "character": "Genos",
+          "description": "The Incinerate design, with Genos, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/10-Genos-Incinerate-Black.png",
+            "white": "Anime/One Punch Man/10-Genos-Incinerate-White.png"
+          }
+        },
+        {
+          "id": "gravity-is-optional",
+          "name": "Gravity Is Optional",
+          "character": "Tatsumaki",
+          "description": "The Gravity Is Optional design, with Tatsumaki, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/04-Tatsumaki-Gravity-Is-Optional-Black.png",
+            "white": "Anime/One Punch Man/04-Tatsumaki-Gravity-Is-Optional-White.png"
+          }
+        },
+        {
+          "id": "its-just-my-heartbeat",
+          "name": "It’s Just My Heartbeat",
+          "character": "King",
+          "description": "The It’s Just My Heartbeat design, with King, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/03-King-Its-Just-My-Heartbeat-Black.png",
+            "white": "Anime/One Punch Man/03-King-Its-Just-My-Heartbeat-White.png"
+          }
+        },
+        {
+          "id": "hero-hunter",
+          "name": "Hero Hunter",
+          "character": "Garou",
+          "description": "The Hero Hunter design, with Garou, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/08-Garou-Hero-Hunter-Black.png",
+            "white": "Anime/One Punch Man/08-Garou-Hero-Hunter-White.png"
+          }
+        },
+        {
+          "id": "one-more-round",
+          "name": "One More Round",
+          "character": "Mumen Rider",
+          "description": "The One More Round design, with Mumen Rider, on an oversized tee.",
+          "defaultColor": "black",
+          "images": {
+            "black": "Anime/One Punch Man/02-Mumen-Rider-One-More-Round-Black.png",
+            "white": "Anime/One Punch Man/02-Mumen-Rider-One-More-Round-White.png"
+          }
+        }
+      ]
+    }
+  ]
+}

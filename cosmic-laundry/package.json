@@ -1,7 +1,0 @@
-{
-  "name": "cosmic-laundry",
-  "private": true,
-  "type": "module",
-  "scripts": {"prepare:3d": "node scripts/vendor-3d.mjs", "check:3d": "node --test tests/cloth.test.mjs"},
-  "dependencies": {"three": "0.180.0", "gsap": "3.13.0"}
-}

@@ -1,0 +1,179 @@
+{
+  "batch": "pink-panther",
+  "source": "Pink-Panther-A3-32-Mockups.zip",
+  "collections": [
+    {
+      "id": "pink-panther",
+      "name": "Pink Panther Laundry",
+      "short": "Pink Panther",
+      "tagline": "Think pink.",
+      "description": "The Pink Panther behind the camera, by the pool, and on the moon. Sixteen graphic tees in black and white.",
+      "featured": "pink-panther-instant-photographer",
+      "tint": "#f7e1e8",
+      "accent": "#a43964",
+      "theme": "pink-panther",
+      "products": [
+        {
+          "id": "pink-panther-instant-photographer",
+          "name": "Instant Photographer",
+          "description": "Instant Photographer, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/01-instant-photographer-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/01-instant-photographer-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-no-spill-skater",
+          "name": "No Spill Skater",
+          "description": "No Spill Skater, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/04-no-spill-skater-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/04-no-spill-skater-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-the-last-drop",
+          "name": "The Last Drop",
+          "description": "The Last Drop, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/07-the-last-drop-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/07-the-last-drop-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-low-budget-wind-machine",
+          "name": "Low Budget Wind Machine",
+          "description": "Low Budget Wind Machine, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/08-low-budget-wind-machine-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/08-low-budget-wind-machine-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-record-store",
+          "name": "Record Store",
+          "description": "Record Store, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/10-record-store-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/10-record-store-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-bookworm",
+          "name": "Bookworm",
+          "description": "Bookworm, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/11-bookworm-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/11-bookworm-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-pizza-tail",
+          "name": "Pizza Tail",
+          "description": "Pizza Tail, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/12-pizza-tail-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/12-pizza-tail-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-sandcastle-architect",
+          "name": "Sandcastle Architect",
+          "description": "Sandcastle Architect, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/13-sandcastle-architect-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/13-sandcastle-architect-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-mirrorball",
+          "name": "Mirrorball",
+          "description": "Mirrorball, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/16-mirrorball-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/16-mirrorball-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-poolside",
+          "name": "Poolside",
+          "description": "Poolside, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/17-poolside-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/17-poolside-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-king-of-the-world",
+          "name": "King Of The World",
+          "description": "King Of The World, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/23-king-of-the-world-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/23-king-of-the-world-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-show-me-the-money",
+          "name": "Show Me the Money",
+          "description": "Show Me the Money, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/24-show-me-the-money-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/24-show-me-the-money-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-no-place-like-home",
+          "name": "No Place Like Home",
+          "description": "No Place Like Home, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/25-no-place-like-home-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/25-no-place-like-home-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-phone-home",
+          "name": "Phone Home",
+          "description": "Phone Home, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/26-phone-home-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/26-phone-home-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-houston",
+          "name": "Houston",
+          "description": "Houston, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/27-houston-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/27-houston-Black.png"
+          }
+        },
+        {
+          "id": "pink-panther-im-walking-here",
+          "name": "I'm Walking Here",
+          "description": "I'm Walking Here, a Pink Panther design on an oversized tee.",
+          "defaultColor": "white",
+          "images": {
+            "white": "Pink-Panther-A3-32-Mockups/White/29-im-walking-here-White.png",
+            "black": "Pink-Panther-A3-32-Mockups/Black/29-im-walking-here-Black.png"
+          }
+        }
+      ]
+    }
+  ]
+}

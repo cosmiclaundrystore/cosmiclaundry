@@ -1,0 +1,65 @@
+/* LK / UK / US switcher: same small, spaced capitals as the LAUNDRIES link; the current region is underlined like the current page. */
+.region-switch { display: inline-flex; align-items: center; gap: 2px; }
+.region-switch button {
+  position: relative; min-width: 34px; min-height: 44px; padding: 0 7px;
+  background: none; border: 0; color: #8b8b85; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  transition: color .2s;
+}
+.region-switch button + button::before {
+  content: ''; position: absolute; left: -1px; top: 50%; width: 1px; height: 11px; transform: translateY(-50%); background: #20201e2e;
+}
+.region-switch button::after {
+  content: ''; position: absolute; left: 7px; right: 7px; bottom: 11px; height: 1px; background: #20201e;
+  transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+}
+.region-switch button:hover { color: #20201e; }
+.region-switch button[aria-pressed="true"] { color: #20201e; }
+.region-switch button[aria-pressed="true"]::after { transform: scaleX(1); }
+.region-switch button:focus-visible { outline: 2px solid #20201e; outline-offset: 2px; border-radius: 2px; }
+.region-switch .region-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Footer: before Fit & sizing. */
+.footer-bottom .region-switch--footer { margin-left: auto; margin-right: 8px; }
+.footer-bottom .region-switch--footer button { min-height: 44px; font-size: 11px; }
+
+/* Phone menu: top bar, on the right (close button left, logo centre). */
+.region-switch--menu { display: none; }
+@media (max-width: 650px) {
+  .mobile-menu-top .region-switch--menu { display: inline-flex; grid-column: 3; justify-self: end; margin-right: -7px; }
+  .footer-bottom .region-switch--footer { margin-left: 0; order: 2; }
+}
+
+/* Header: a small flag dropdown just left of the basket. */
+.region-menu { position: relative; display: inline-flex; }
+.site-header > .region-menu { grid-column: 3; grid-row: 1; justify-self: end; margin-right: 52px; }
+@media (max-width: 650px) { .site-header > .region-menu { display: none; } }
+.region-menu-button {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 2px;
+  background: none; border: 0; color: #20201e; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+}
+.region-flag { width: 18px; height: 12px; flex: 0 0 auto; border-radius: 2px; box-shadow: 0 0 0 1px #20201e1f; display: block; }
+.region-menu-flag { display: inline-flex; }
+.region-menu-chevron { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; opacity: .7; }
+.region-menu-button[aria-expanded="true"] .region-menu-chevron { transform: rotate(180deg); }
+.region-menu-button:hover .region-menu-chevron { opacity: 1; }
+.region-menu-button:focus-visible { outline: 2px solid #20201e; outline-offset: 2px; border-radius: 2px; }
+.region-menu-list {
+  position: absolute; top: calc(100% - 2px); right: -12px; z-index: 30; min-width: 212px; margin: 0; padding: 6px; list-style: none;
+  background: #FAF9F6; border: 1px solid #20201e1a; border-radius: 6px; box-shadow: 0 14px 34px #20201e1f;
+  animation: region-menu-in .16s ease-out;
+}
+.region-menu-list[hidden] { display: none; }
+.region-menu-list button {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 40px; padding: 8px 10px;
+  background: none; border: 0; border-radius: 4px; color: #20201e; cursor: pointer; text-align: left;
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0; text-transform: none;
+}
+.region-menu-list button:hover, .region-menu-list button:focus-visible { background: #20201e0d; outline: none; }
+.region-option-name { flex: 1; }
+.region-option-currency { font-size: 11px; letter-spacing: .08em; color: #8b8b85; }
+.region-menu-list button[aria-checked="true"] { font-weight: 600; }
+.region-menu-list button[aria-checked="true"] .region-option-currency { color: #20201e; }
+@keyframes region-menu-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .region-menu-list { animation: none; } }
