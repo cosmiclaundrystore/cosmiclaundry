@@ -115,6 +115,9 @@ export type OrderDetail = Omit<OrderExportRow, 'order_items'> & {
   id: string;
   region_code: string;
   admin_note: string | null;
+  user_id: string | null;
+  discount_minor: number;
+  reward_id: string | null;
   shipped_at: string | null;
   updated_at: string;
   order_items: { product_id: string | null; product_name: string; color: string; size: string; quantity: number; unit_price_minor: number; line_total_minor: number; products: { id: string; image_base: string | null; default_color: string } | null; design_path: string | null; design_note: string | null }[];

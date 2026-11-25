@@ -98,3 +98,7 @@ uploads their design (PNG/JPG/WebP, shrunk in the browser), adds instructions, a
   24 hours, unpaid orders' designs after 7 days, delivered/cancelled/refunded orders' designs after 30 days.
 - Which Laundries need a design: `DESIGN_COLLECTIONS` in `public/commerce.js` and `collection === 'custom'` in
   `lib/checkout/pricing.ts`. It's kept off the home page strip and out of All tees.
+
+## Customer accounts and credits
+
+Sign-in (password or Google), credits (100 per tee, 200 per custom tee, on delivery) and the 1,000-credit reward (20% off tees + free delivery). Details and the one-time setup steps: `docs/accounts-and-credits.md`.

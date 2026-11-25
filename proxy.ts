@@ -7,22 +7,27 @@ import { parseRegion, regionForCountry, REGION_COOKIE } from '@/lib/checkout/sha
 //   Admin, the signup API, the payment webhook and the cron job keep working.
 // - Shopping region: the visitor's LK / UK / US choice (cookie), or on the first visit their country from Vercel's
 //   geo header. /catalog.js is served from /catalog/<region> so each region's prices are cached separately.
-// - Admin: keeps the Supabase sign-in fresh. This is not the access check; every admin page, action and download
-//   checks admin_users on the server.
+// - Sign-in: keeps the Supabase session fresh for the admin, customer accounts and checkout. This is not the access
+//   check; every admin page checks admin_users and every account page checks the signed-in customer on the server.
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (pathname.startsWith('/admin')) return refreshAdminSession(request);
+  if (pathname.startsWith('/admin')) return refreshSession(request);
   if (process.env.STORE_OPEN !== 'true') return launchLock(request);
   if (pathname === '/comingsoon') return NextResponse.redirect(new URL('/', request.url));
+  if (/^\/(account|auth)(\/|$)/.test(pathname)) return refreshSession(request);
   if (!REGION_PATHS.test(pathname)) return NextResponse.next();
 
   const chosen = parseRegion(request.cookies.get(REGION_COOKIE)?.value);
   const region = chosen ?? regionForCountry(request.headers.get('x-vercel-ip-country'));
 
+  // Checkout also needs the customer's sign-in (to link the order and offer their reward).
+  const signedIn = request.cookies.getAll().some((c) => c.name.startsWith('sb-'));
   const response =
     pathname === '/catalog.js'
       ? NextResponse.rewrite(new URL(`/catalog/${region}`, request.url))
-      : NextResponse.next();
+      : signedIn && /^\/(checkout|api\/checkout)(\/|$)/.test(pathname)
+        ? await refreshSession(request)
+        : NextResponse.next();
   // Remember the region so the shop, basket and checkout agree. Readable by the page's switcher (not secret).
   if (!chosen) response.cookies.set(REGION_COOKIE, region, { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' });
   return response;
@@ -44,7 +49,7 @@ function launchLock(request: NextRequest) {
   return NextResponse.redirect(new URL('/', request.url), 307);
 }
 
-async function refreshAdminSession(request: NextRequest) {
+async function refreshSession(request: NextRequest) {
   let response = NextResponse.next({ request });
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;

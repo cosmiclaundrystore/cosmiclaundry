@@ -32,7 +32,7 @@
 
 /* Header: a small flag dropdown just left of the basket. */
 .region-menu { position: relative; display: inline-flex; }
-.site-header > .region-menu { grid-column: 3; grid-row: 1; justify-self: end; margin-right: 52px; }
+.site-header > .region-menu { grid-column: 3; grid-row: 1; justify-self: end; margin-right: 96px; }
 @media (max-width: 650px) { .site-header > .region-menu { display: none; } }
 .region-menu-button {
   display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 2px;
@@ -63,3 +63,17 @@
 .region-menu-list button[aria-checked="true"] .region-option-currency { color: #20201e; }
 @keyframes region-menu-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .region-menu-list { animation: none; } }
+
+/* Account icon: just left of the basket (customer accounts and credits). */
+.site-header > .account-link {
+  grid-column: 3; grid-row: 1; justify-self: end; margin-right: 50px;
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #20201e;
+}
+.site-header > .account-link:hover { background: #1919191a; }
+.site-header > .account-link svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.mobile-menu-account { display: none; }
+@media (max-width: 650px) {
+  .site-header > .account-link { margin-right: 36px; }
+  .site-header > .account-link svg { width: 22px; height: 22px; }
+  .mobile-menu-account { display: block; margin-top: 18px; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #20201e; text-decoration: none; }
+}

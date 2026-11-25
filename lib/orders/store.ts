@@ -15,6 +15,8 @@ export type OrderView = {
   status: OrderStatus;
   currency: Currency;
   subtotalMinor: number;
+  /** Reward discount (20% off tees + free delivery), 0 when none. */
+  discountMinor: number;
   shippingMinor: number;
   totalMinor: number;
   firstName: string;
@@ -39,6 +41,10 @@ export type PaymentResult = {
 };
 export type RecordOutcome = 'applied' | 'duplicate' | 'paid_again' | 'unknown_invoice';
 
+export type OrderAccount = { userId: string; rewardId: string | null };
+
+export class RewardUnavailableError extends Error {}
+
 export class OrderNotPayableError extends Error {
   constructor(public reason: 'order_not_found' | 'order_not_payable' | 'too_many_attempts') { super(reason); }
 }
@@ -54,7 +60,8 @@ function tokenMatches(token: string, storedHash: string): boolean {
 
 interface OrderStore {
   /** visitorCountry: where the shopper was connecting from (Vercel geo header), or null when unknown. */
-  createOrder(quote: Quote, customer: CustomerInput, countryCode: string, visitorCountry: string | null): Promise<{ number: string; token: string }>;
+  /** account: the signed-in customer (and the reward they're using), or null for a guest. */
+  createOrder(quote: Quote, customer: CustomerInput, countryCode: string, visitorCountry: string | null, account?: OrderAccount | null): Promise<{ number: string; token: string }>;
   startAttempt(orderNumber: string): Promise<PaymentAttempt>;
   findAttempt(invoiceId: string): Promise<AttemptLookup | null>;
   recordPaymentResult(result: PaymentResult): Promise<RecordOutcome>;
@@ -66,13 +73,16 @@ function newToken(): string {
   return randomBytes(24).toString('base64url');
 }
 
-function orderPayload(quote: Quote, customer: CustomerInput, countryCode: string, tokenHash: string, visitorCountry: string | null) {
+function orderPayload(quote: Quote, customer: CustomerInput, countryCode: string, tokenHash: string, visitorCountry: string | null, account: OrderAccount | null) {
   return {
     region_code: quote.region,
     currency: quote.currency,
     subtotal_minor: quote.subtotalMinor,
     shipping_minor: quote.shippingMinor,
     total_minor: quote.totalMinor,
+    discount_minor: quote.discountMinor,
+    user_id: account?.userId ?? null,
+    reward_id: quote.rewardApplied ? account?.rewardId ?? null : null,
     email: customer.email,
     phone: customer.phone,
     first_name: customer.firstName,
@@ -106,6 +116,7 @@ type OrderRow = {
   status: OrderStatus;
   currency: Currency;
   subtotal_minor: number;
+  discount_minor: number;
   shipping_minor: number;
   total_minor: number;
   first_name: string;
@@ -124,11 +135,17 @@ type OrderRow = {
 
 function supabaseStore(target: SupabaseTarget): OrderStore {
   return {
-    async createOrder(quote, customer, countryCode, visitorCountry) {
+    async createOrder(quote, customer, countryCode, visitorCountry, account = null) {
       const token = newToken();
-      const rows = await rpc<{ order_id: string; order_number: string }[]>(target, 'create_order', {
-        p: orderPayload(quote, customer, countryCode, hashToken(token), visitorCountry),
-      });
+      let rows: { order_id: string; order_number: string }[];
+      try {
+        rows = await rpc<{ order_id: string; order_number: string }[]>(target, 'create_order', {
+          p: orderPayload(quote, customer, countryCode, hashToken(token), visitorCountry, account),
+        });
+      } catch (error) {
+        if (error instanceof SupabaseRpcError && error.dbMessage === 'reward_unavailable') throw new RewardUnavailableError('reward_unavailable');
+        throw error;
+      }
       return { number: rows[0].order_number, token };
     },
     async startAttempt(orderNumber) {
@@ -167,7 +184,7 @@ function supabaseStore(target: SupabaseTarget): OrderStore {
     async getOrder(orderNumber, token) {
       const rows = await restGet<OrderRow>(
         target,
-        `orders?select=number,status,currency,subtotal_minor,shipping_minor,total_minor,first_name,last_name,email,phone,address_line1,address_line2,city,postcode,country_code,notes,access_token_hash,order_items(product_id,product_name,color,size,quantity,unit_price_minor,line_total_minor)&number=eq.${encodeURIComponent(orderNumber)}`,
+        `orders?select=number,status,currency,subtotal_minor,shipping_minor,discount_minor,total_minor,first_name,last_name,email,phone,address_line1,address_line2,city,postcode,country_code,notes,access_token_hash,order_items(product_id,product_name,color,size,quantity,unit_price_minor,line_total_minor)&number=eq.${encodeURIComponent(orderNumber)}`,
       );
       const row = rows[0];
       if (!row || !tokenMatches(token, row.access_token_hash)) return null;
@@ -181,6 +198,7 @@ function supabaseStore(target: SupabaseTarget): OrderStore {
         status: row.status,
         currency: row.currency,
         subtotalMinor: row.subtotal_minor,
+        discountMinor: row.discount_minor ?? 0,
         shippingMinor: row.shipping_minor,
         totalMinor: row.total_minor,
         firstName: row.first_name,
@@ -222,6 +240,7 @@ function memoryStore(): OrderStore {
           status: 'pending',
           currency: quote.currency,
           subtotalMinor: quote.subtotalMinor,
+          discountMinor: quote.discountMinor,
           shippingMinor: quote.shippingMinor,
           totalMinor: quote.totalMinor,
           firstName: customer.firstName,

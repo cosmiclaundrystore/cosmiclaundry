@@ -1,6 +1,7 @@
 import 'server-only';
 import { catalogSnapshot } from '@/lib/catalog/seed-data';
 import { publicSupabase, restGet } from '@/lib/supabase/rest';
+import { creditsForLine, REWARD_TEE_DISCOUNT } from '@/lib/account/credits';
 import { COLORS, REGION_CURRENCY, type BasketItem, type Currency, type RegionCode } from './shared';
 
 // The server's price check. Prices always come from the catalog here, never from the browser.
@@ -33,6 +34,11 @@ export type Quote = {
   subtotalMinor: number;
   shippingMinor: number;
   shippingLabel: string;
+  /** Reward: 20% off the tees plus free delivery (0 when no reward is used). */
+  discountMinor: number;
+  rewardApplied: boolean;
+  /** Credits this order earns once delivered, if the customer is signed in. */
+  credits: number;
   totalMinor: number;
 };
 
@@ -100,7 +106,7 @@ async function loadEntries(ids: string[], region: RegionCode): Promise<{ entries
 export class CheckoutUnavailableError extends Error {}
 
 /** Prices a basket for a region. Lines that can't be sold are left out and listed in `problems`. */
-export async function priceBasket(items: BasketItem[], region: RegionCode): Promise<Quote> {
+export async function priceBasket(items: BasketItem[], region: RegionCode, options: { reward?: boolean } = {}): Promise<Quote> {
   const currency = REGION_CURRENCY[region];
   const { entries, shipping } = await loadEntries([...new Set(items.map((i) => i.id))], region);
   if (!shipping) throw new CheckoutUnavailableError(`No shipping rate is set for region ${region}.`);
@@ -129,7 +135,15 @@ export async function priceBasket(items: BasketItem[], region: RegionCode): Prom
   }
   const subtotalMinor = lines.reduce((sum, line) => sum + line.lineMinor, 0);
   const shippingMinor = lines.length ? shipping.minor : 0;
-  return { region, currency, lines, problems, subtotalMinor, shippingMinor, shippingLabel: shipping.label, totalMinor: subtotalMinor + shippingMinor };
+  // A reward takes 20% off the tees (rounded to whole rupees for LKR) and makes delivery free.
+  const rewardApplied = !!options.reward && lines.length > 0;
+  const unit = currency === 'LKR' ? 100 : 1;
+  const discountMinor = rewardApplied ? Math.round((subtotalMinor * REWARD_TEE_DISCOUNT) / unit) * unit + shippingMinor : 0;
+  const credits = lines.reduce((sum, line) => sum + creditsForLine(line), 0);
+  return {
+    region, currency, lines, problems, subtotalMinor, shippingMinor, shippingLabel: shipping.label,
+    discountMinor, rewardApplied, credits, totalMinor: subtotalMinor + shippingMinor - discountMinor,
+  };
 }
 
 function pick(item: BasketItem) {

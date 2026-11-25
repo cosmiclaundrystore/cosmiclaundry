@@ -30,6 +30,7 @@ export const storefrontHtml = String.raw`
   <script defer src="/catalog.js"></script>
   <script defer src="/commerce.js?v=garment3d"></script>
   <script defer src="/hero-marquee.js"></script>
+  <script defer src="/hero-ripple.js"></script>
   <script defer src="/app.js?v=garment3d"></script>
   <script defer src="/menu.js"></script>
 </head>
@@ -39,6 +40,7 @@ export const storefrontHtml = String.raw`
     <a class="brand" href="/" aria-label="Cosmic Laundry home"><img src="/assets/products/logo-black-480.webp" alt="" width="65" height="68"></a>
     <nav aria-label="Main navigation"><a href="/laundries">Laundries</a></nav>
     <div class="region-menu" data-region-menu><button type="button" class="region-menu-button" aria-haspopup="menu" aria-expanded="false" aria-controls="region-menu-list" aria-label="Shopping region: Sri Lanka, prices in LKR"><span class="region-menu-flag" data-region-flag><svg class="region-flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#ffbe29"/><rect x="1.2" y="1.2" width="3.6" height="13.6" fill="#00534e"/><rect x="4.8" y="1.2" width="3.6" height="13.6" fill="#eb7400"/><rect x="9.6" y="1.2" width="13.2" height="13.6" fill="#8d153a"/></svg></span><span data-region-code>LK</span><svg class="region-menu-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button><ul class="region-menu-list" id="region-menu-list" role="menu" aria-label="Shop in" data-region-switch hidden><li><button type="button" role="menuitemradio" aria-checked="false" data-region="LK"><svg class="region-flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#ffbe29"/><rect x="1.2" y="1.2" width="3.6" height="13.6" fill="#00534e"/><rect x="4.8" y="1.2" width="3.6" height="13.6" fill="#eb7400"/><rect x="9.6" y="1.2" width="13.2" height="13.6" fill="#8d153a"/></svg><span class="region-option-name">Sri Lanka</span><span class="region-option-currency">LKR</span></button></li><li><button type="button" role="menuitemradio" aria-checked="false" data-region="UK"><svg class="region-flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0l24 16M24 0L0 16" stroke="#c8102e" stroke-width="1.2"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5"/><path d="M12 0v16M0 8h24" stroke="#c8102e" stroke-width="3"/></svg><span class="region-option-name">United Kingdom</span><span class="region-option-currency">GBP</span></button></li><li><button type="button" role="menuitemradio" aria-checked="false" data-region="US"><svg class="region-flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#fff"/><path d="M0 1.23h24M0 3.69h24M0 6.15h24M0 8.62h24M0 11.08h24M0 13.54h24M0 16h24" stroke="#b22234" stroke-width="1.23"/><rect width="10.4" height="8.6" fill="#3c3b6e"/></svg><span class="region-option-name">United States</span><span class="region-option-currency">USD</span></button></li></ul></div>
+    <a class="account-link" href="/account" aria-label="Your account and credits"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.7"/><path d="M4.8 20.2c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg></a>
     <button class="bag-button" data-open-bag aria-label="Open laundry basket"><svg class="basket-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M8.5 9c.2-1.9 1.6-3.2 3.5-3.2s3.3 1.3 3.5 3.2"/><path d="M2.75 9h18.5"/><path d="M4.2 9l1.55 10.1A2.2 2.2 0 0 0 7.93 21h8.14a2.2 2.2 0 0 0 2.18-1.9L19.8 9"/><path d="M5 13.2h14M5.6 17.1h12.8"/><path d="M9.6 9.6v10.8M14.4 9.6v10.8"/></svg></button>
     <button class="menu-toggle" type="button" data-menu-open aria-label="Open menu" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </header>
@@ -51,6 +53,7 @@ export const storefrontHtml = String.raw`
     <nav class="mobile-menu-nav" aria-label="Mobile navigation">
       <a class="mobile-menu-main" href="/laundries" data-menu-link>Laundries</a>
       <ul class="mobile-menu-laundries" data-menu-laundries></ul>
+      <a class="mobile-menu-account" href="/account" data-menu-link>Account &amp; credits</a>
     </nav>
   </dialog>
   <main id="main" tabindex="-1"></main>

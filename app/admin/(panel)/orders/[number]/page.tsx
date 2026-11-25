@@ -78,6 +78,7 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
             <div className="a-totals">
               <div><span className="a-muted">Subtotal</span><span>{money(order.subtotal_minor, order.currency)}</span></div>
               <div><span className="a-muted">Delivery</span><span>{money(order.shipping_minor, order.currency)}</span></div>
+              {order.discount_minor > 0 && <div><span className="a-muted">Reward (20% off + free delivery)</span><span>−{money(order.discount_minor, order.currency)}</span></div>}
               <div className="grand"><span>Total</span><span>{money(order.total_minor, order.currency)}</span></div>
             </div>
           </section>
@@ -132,6 +133,7 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
               <dt>Email</dt><dd><a href={`mailto:${order.email}`}>{order.email}</a></dd>
               <dt>Phone</dt><dd><a href={`tel:${order.phone}`}>{order.phone}</a></dd>
               <dt>Connecting from</dt><dd>{order.visitor_country ?? 'Unknown'}</dd>
+              <dt>Account</dt><dd>{order.user_id ? 'Signed-in customer (earns credits when delivered)' : 'Guest'}</dd>
             </dl>
           </section>
           <section className="a-card">

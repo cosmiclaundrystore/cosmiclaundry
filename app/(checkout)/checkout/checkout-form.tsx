@@ -54,7 +54,11 @@ function writeBasket(items: BasketItem[]) {
 
 const arrowIcon = <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.5" /></svg>;
 
-export function CheckoutForm({ cancelledOrder, region }: { cancelledOrder: string | null; region: RegionCode }) {
+/** The signed-in customer, for prefilling and credits. */
+export type CheckoutAccount = { email: string; firstName: string; lastName: string; balance: number; hasReward: boolean };
+
+export function CheckoutForm({ cancelledOrder, region, account }: { cancelledOrder: string | null; region: RegionCode; account: CheckoutAccount | null }) {
+  const [useReward, setUseReward] = useState(false);
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
   const [basket, setBasket] = useState<BasketItem[]>([]);
   const [form, setForm] = useState<Form>(EMPTY_FORM);
@@ -65,10 +69,10 @@ export function CheckoutForm({ cancelledOrder, region }: { cancelledOrder: strin
   const formRef = useRef<HTMLFormElement>(null);
   const country = REGION_COUNTRY[region];
 
-  async function loadQuote(items: BasketItem[]) {
+  async function loadQuote(items: BasketItem[], withReward = useReward) {
     if (!items.length) { setStatus({ kind: 'empty' }); return; }
     try {
-      const response = await fetch('/api/checkout/quote', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ items, region }) });
+      const response = await fetch('/api/checkout/quote', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ items, region, useReward: withReward }) });
       const data = await response.json();
       if (data.error === 'region_changed') { restartForNewRegion(data.message); return; }
       if (!response.ok) throw new Error(data.message || 'We could not load your laundry basket.');
@@ -100,7 +104,8 @@ export function CheckoutForm({ cancelledOrder, region }: { cancelledOrder: strin
     } catch { /* ignore */ }
     try {
       const draft = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || 'null');
-      if (draft && typeof draft === 'object') setForm({ ...EMPTY_FORM, ...draft, acceptTerms: false });
+      const prefill = account ? { email: account.email, firstName: account.firstName, lastName: account.lastName } : {};
+      setForm({ ...EMPTY_FORM, ...prefill, ...(draft && typeof draft === 'object' ? draft : {}), acceptTerms: false });
     } catch { /* no draft */ }
     loadQuote(items);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,14 +134,15 @@ export function CheckoutForm({ cancelledOrder, region }: { cancelledOrder: strin
 
     setSubmitting(true);
     try {
-      const response = await fetch('/api/checkout', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ items: basket, customer: value, region, expectedTotalMinor: status.quote.totalMinor, expectedCurrency: status.quote.currency }) });
+      const response = await fetch('/api/checkout', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ items: basket, customer: value, region, useReward, expectedTotalMinor: status.quote.totalMinor, expectedCurrency: status.quote.currency }) });
       const data = await response.json();
       if (response.ok && typeof data.redirectUrl === 'string') {
         window.location.assign(data.redirectUrl);
         return; // keep the button busy while the browser leaves
       }
       if (data.error === 'region_changed') { restartForNewRegion(data.message); return; }
-      if (data.error === 'invalid_details') { setErrors(data.fieldErrors ?? {}); focusFirstError(data.fieldErrors ?? {}); }
+      if (data.error === 'reward_unavailable' && data.quote) { setUseReward(false); applyQuote(data.quote as Quote, basket); setSubmitError(data.message); }
+      else if (data.error === 'invalid_details') { setErrors(data.fieldErrors ?? {}); focusFirstError(data.fieldErrors ?? {}); }
       else if (data.error === 'basket_changed' && data.quote) { applyQuote(data.quote as Quote, basket); setSubmitError(data.message); }
       else setSubmitError(data.message || 'We could not start your payment. Please try again.');
     } catch {
@@ -199,6 +205,36 @@ export function CheckoutForm({ cancelledOrder, region }: { cancelledOrder: strin
           <summary><span>Order summary</span><strong>{formatMoney(quote.totalMinor, quote.currency)}</strong></summary>
           <Summary quote={quote} />
         </details>
+
+        <div className="co-credits">
+          {account ? (
+            <>
+              This order earns <strong>{quote.credits.toLocaleString('en-US')} credits</strong> once it’s delivered
+              {' '}(you have {Math.max(0, account.balance).toLocaleString('en-US')} / 1,000). <a href="/account">Your account</a>
+              {account.hasReward && (
+                <div className={`co-reward${quote.rewardApplied ? ' is-claimed' : ''}`} aria-live="polite">
+                  <span className="co-reward-icon" aria-hidden="true">{quote.rewardApplied ? '✓' : '★'}</span>
+                  <span className="co-reward-text">
+                    {quote.rewardApplied ? (
+                      <><strong>Reward claimed!</strong>You’re saving {formatMoney(quote.discountMinor, quote.currency)} on this order.</>
+                    ) : (
+                      <><strong>You’ve unlocked a reward</strong>20% off your tees + free delivery on this order.</>
+                    )}
+                  </span>
+                  <button
+                    type="button"
+                    className={quote.rewardApplied ? 'co-reward-remove' : 'co-reward-claim'}
+                    onClick={() => { const next = !useReward; setUseReward(next); loadQuote(basket, next); }}
+                  >
+                    {quote.rewardApplied ? 'Remove' : 'Claim'}
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <><a href="/account/login?next=/checkout"><strong>Sign in</strong></a> or <a href="/account/login?mode=signup&amp;next=/checkout">create an account</a> to earn <strong>{quote.credits.toLocaleString('en-US')} credits</strong> on this order. 1,000 credits = 20% off + free delivery.</>
+          )}
+        </div>
 
         <form ref={formRef} className="co-form" onSubmit={submit} noValidate>
           <fieldset className="co-section">
@@ -266,6 +302,7 @@ function Summary({ quote }: { quote: Quote }) {
       subtotalMinor={quote.subtotalMinor}
       shippingMinor={quote.shippingMinor}
       shippingLabel={quote.shippingLabel}
+      discountMinor={quote.discountMinor}
       totalMinor={quote.totalMinor}
       lines={quote.lines.map((line) => ({
         key: `${line.id}|${line.color}|${line.size}|${line.design?.id ?? ''}`,

@@ -120,3 +120,35 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .co-spinner { animation: none; } }
+
+/* Checkout: credits and the reward */
+.checkout-body .co-credits { margin: 0 0 22px; padding: 14px 16px; border: 1px solid #20201e1a; border-radius: 6px; font-size: 13px; line-height: 1.6; color: #20201e; background: #fff; }
+.checkout-body .co-credits a { color: inherit; text-underline-offset: 3px; }
+.checkout-body .co-reward {
+  display: flex; gap: 12px; align-items: center; margin-top: 12px; padding: 14px; border-radius: 6px; background: #20201e; color: #FAF9F6;
+  transition: background .25s;
+}
+.checkout-body .co-reward.is-claimed { background: #1d6b3a; }
+.checkout-body .co-reward-icon {
+  display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 auto; border-radius: 50%; background: #FAF9F622; font-size: 15px;
+}
+.checkout-body .co-reward-text { flex: 1; min-width: 0; }
+.checkout-body .co-reward strong { display: block; font-weight: 500; font-size: 14px; }
+.checkout-body .co-reward-claim {
+  flex: 0 0 auto; border: 0; border-radius: 4px; padding: 10px 18px; background: #FAF9F6; color: #20201e; font: inherit; font-size: 13px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: transform .15s;
+}
+.checkout-body .co-reward-claim:hover { transform: translateY(-1px); }
+.checkout-body .co-reward-remove {
+  flex: 0 0 auto; border: 0; background: none; padding: 6px; color: inherit; font: inherit; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; opacity: .85;
+}
+
+/* Reward applied: old prices struck through, the new ones beside them. */
+.checkout-body .co-totals s { color: #8b8b85; font-weight: 400; margin-right: 6px; text-decoration-thickness: 1px; }
+.checkout-body .co-off-badge {
+  display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 99px; background: #1d6b3a; color: #fff; font-size: 10px; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; vertical-align: 1px;
+}
+.checkout-body .co-free { color: #1d6b3a; font-weight: 600; }
+.checkout-body .co-totals .co-discount, .checkout-body .co-totals .co-discount dd { color: #1d6b3a; font-weight: 500; }
+.checkout-body .co-totals .co-total .co-was { font-size: 14px; letter-spacing: 0; margin-right: 8px; }

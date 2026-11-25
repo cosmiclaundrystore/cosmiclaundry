@@ -1,7 +1,8 @@
-import { adminSupabase, restGet, storageDelete, storageList } from '@/lib/supabase/rest';
+import { adminSupabase, restGet, rpc, storageDelete, storageList } from '@/lib/supabase/rest';
 import { DESIGN_BUCKET } from '@/lib/custom/designs';
 
-// Daily clean-up of custom tee designs (Vercel Cron, see vercel.json), so Storage stays small on the free plan:
+// Daily clean-up: custom tee designs, and rewards held by unpaid orders.
+// Custom tee designs (Vercel Cron, see vercel.json), so Storage stays small on the free plan:
 // - uploads that never became an order: after 24 hours
 // - designs on unpaid or failed orders: after 7 days
 // - designs on delivered, cancelled or refunded orders: 30 days after the order last changed
@@ -44,5 +45,7 @@ export async function GET(request: Request) {
   }
 
   for (let i = 0; i < remove.length; i += 100) await storageDelete(target, DESIGN_BUCKET, remove.slice(i, i + 100));
-  return Response.json({ checked: files.length, deleted: remove.length });
+  // Unpaid orders that have held a customer's reward for over 24 hours are cancelled, so the reward comes back.
+  const rewardsReleased = await rpc<number>(target, 'release_stale_rewards', {});
+  return Response.json({ checked: files.length, deleted: remove.length, rewardsReleased });
 }

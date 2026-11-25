@@ -87,6 +87,7 @@ export function OrderComplete({ orderNumber, token }: { orderNumber: string; tok
       subtotalMinor={order.subtotalMinor}
       shippingMinor={order.shippingMinor}
       shippingLabel="Delivery"
+      discountMinor={order.discountMinor}
       totalMinor={order.totalMinor}
       lines={order.items.map((item, index) => ({
         key: `${index}`,

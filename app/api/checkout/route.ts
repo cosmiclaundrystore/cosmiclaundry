@@ -4,7 +4,9 @@ import { REGION_COUNTRY, parseBasket, validateCustomer } from '@/lib/checkout/sh
 import { requestRegion } from '@/lib/region';
 import { designExists } from '@/lib/custom/designs';
 import { startPayment } from '@/lib/checkout/start-payment';
-import { orderStore } from '@/lib/orders/store';
+import { orderStore, RewardUnavailableError } from '@/lib/orders/store';
+import { getCustomer } from '@/lib/account/session';
+import { availableReward } from '@/lib/account/data';
 import { siteUrl } from '@/lib/payable/config';
 
 // Places an order: re-prices the basket on the server, saves a pending order, and opens a PAYable payment session.
@@ -18,12 +20,18 @@ export async function POST(request: Request) {
   if (body?.region !== region) {
     return json({ error: 'region_changed', message: 'Your shopping region changed while you were checking out, so your basket has been re-priced. Please check the new total and pay again.' }, 409);
   }
-  const { errors, value: customer } = validateCustomer((body?.customer ?? {}) as Record<string, unknown>, region);
-  if (!customer) return json({ error: 'invalid_details', fieldErrors: errors }, 422);
+  const { errors, value: details } = validateCustomer((body?.customer ?? {}) as Record<string, unknown>, region);
+  if (!details) return json({ error: 'invalid_details', fieldErrors: errors }, 422);
 
   const country = REGION_COUNTRY[region];
   try {
-    const quote = await priceBasket(items, region);
+    // Signed in: the order is linked to the account (credits once delivered), and their reward can be used.
+    const customer = await getCustomer();
+    const rewardId = body?.useReward === true && customer ? await availableReward(customer.id) : null;
+    if (body?.useReward === true && !rewardId) {
+      return json({ error: 'reward_unavailable', message: 'Your reward isn’t available any more, so it has been taken off. Please check the new total.', quote: await priceBasket(items, region) }, 409);
+    }
+    const quote = await priceBasket(items, region, { reward: !!rewardId });
     // Never charge a different total from the one shown on the checkout page.
     if (quote.totalMinor !== body?.expectedTotalMinor || quote.currency !== body?.expectedCurrency) {
       return json({ error: 'basket_changed', message: 'Prices in your basket have changed. Please check the new total and pay again.', quote }, 409);
@@ -39,17 +47,20 @@ export async function POST(request: Request) {
     }
     const store = orderStore();
     const visitorCountry = /^[A-Z]{2}$/.test(request.headers.get('x-vercel-ip-country') ?? '') ? request.headers.get('x-vercel-ip-country') : null;
-    const order = await store.createOrder(quote, customer, country.code, visitorCountry);
+    const order = await store.createOrder(quote, details, country.code, visitorCountry, customer ? { userId: customer.id, rewardId } : null);
     const redirectUrl = await startPayment({
       siteUrl: siteUrl(request),
       orderNumber: order.number,
       token: order.token,
-      customer,
+      customer: details,
       countryCode: country.code,
       itemCount: quote.lines.reduce((sum, line) => sum + line.quantity, 0),
     });
     return json({ redirectUrl, order: order.number });
   } catch (error) {
+    if (error instanceof RewardUnavailableError) {
+      return json({ error: 'reward_unavailable', message: 'Your reward was just used on another order, so it has been taken off. Please check the new total.', quote: await priceBasket(items, region) }, 409);
+    }
     return paymentErrorResponse(error, 'place order');
   }
 }
