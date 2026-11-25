@@ -30,7 +30,6 @@ export const storefrontHtml = String.raw`
   <script defer src="/catalog.js"></script>
   <script defer src="/commerce.js?v=garment3d"></script>
   <script defer src="/hero-marquee.js"></script>
-  <script defer src="/hero-ripple.js"></script>
   <script defer src="/app.js?v=garment3d"></script>
   <script defer src="/menu.js"></script>
 </head>
